@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.helloworld.seva.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <view
+        android:id="@+id/maintablayout"
+        class="android.support.design.widget.TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#ea8d8d" />
+
+    <view
+        android:id="@+id/mainviewpager"
+        class="android.support.v4.view.ViewPager"
+        id="@+id/view2"
+        layout_below="@+id/maintablayout"
+        layout_centerHorizontal="true"
+        layout_marginTop="57dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/maintablayout" />
+</RelativeLayout>
