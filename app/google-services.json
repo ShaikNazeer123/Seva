@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "348420890110",
+    "firebase_url": "https://seva-13836.firebaseio.com",
+    "project_id": "seva-13836",
+    "storage_bucket": "seva-13836.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348420890110:android:ced391131b0dac2b",
+        "android_client_info": {
+          "package_name": "com.example.helloworld.seva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348420890110-f5vdssrrfvf5av40ndmv2v5u6e098rab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.helloworld.seva",
+            "certificate_hash": "a08151c530dca73f2ae1723f76b4717e190ccc0d"
+          }
+        },
+        {
+          "client_id": "348420890110-1jl5sntinucfpbidb8d85p3jv4uo6rf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOhxkQzahxAmcjFhFQO8UY52Q5Ur4_HUw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348420890110-1jl5sntinucfpbidb8d85p3jv4uo6rf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
