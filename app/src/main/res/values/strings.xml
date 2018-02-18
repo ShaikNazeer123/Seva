@@ -4,7 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Logout</string>  //modified Settings -> Logout
+    <string name="action_settings">Logout</string>
+    //modified Settings -> Logout
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -84,4 +85,5 @@
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
     <string name="title_activity_hallfinder">Hallfinder</string>
+    <string name="title_activity_temp">temp</string>
 </resources>
