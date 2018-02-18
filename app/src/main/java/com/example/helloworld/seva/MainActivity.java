@@ -1,5 +1,6 @@
 package com.example.helloworld.seva;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,11 +19,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout mainTabLayout;
     ViewPager mainViewPager;
+
+    FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +173,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.like_support) {
 
         } else if (id == R.id.logout) {
-
+            mAuth = FirebaseAuth.getInstance();
+            firebaseUser = mAuth.getCurrentUser();
+            mAuth.signOut();
+            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
