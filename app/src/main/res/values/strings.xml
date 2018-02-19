@@ -86,4 +86,5 @@
     <string name="email_fmt">Email: %s</string>
     <string name="title_activity_hallfinder">Hallfinder</string>
     <string name="title_activity_temp">temp</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
