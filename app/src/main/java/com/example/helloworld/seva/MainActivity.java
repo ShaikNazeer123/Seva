@@ -1,5 +1,6 @@
 package com.example.helloworld.seva;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,19 +21,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements
+        HomeFragment.OnFragmentInteractionListener,
+        AboutFragment.OnFragmentInteractionListener,
+        IntersetsFragment.OnFragmentInteractionListener,
+        LikeSupportFragment.OnFragmentInteractionListener,
+        MyAddsFragment.OnFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
-    TabLayout mainTabLayout;
-    ViewPager mainViewPager;
+
 
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
     DrawerLayout drawer;
+    ImageView profileBtn;
+
+    static Context k;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,32 +55,31 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Code for creating Tabs and Fragments
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        mainTabLayout = (TabLayout)findViewById(R.id.maintablayout);
-        mainViewPager = (ViewPager)findViewById(R.id.mainviewpager);
 
-        mainViewPager.setAdapter(new MyOwnPagerAdapter(getSupportFragmentManager()));
-        mainTabLayout.setupWithViewPager(mainViewPager);
-
-        mainTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        View ll = navigationView.getHeaderView(0);
+        profileBtn = (ImageView) ll.findViewById(R.id.profilebtn);
+        if(profileBtn==null){
+            Log.e("Profile Button","null");
+        }
+        //profile button action
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mainViewPager.setCurrentItem(tab.getPosition());
-            }
+            public void onClick(View view) {
+                Log.e("btn ","Listner");
+                DrawerLayout mDrawerLayout;
+                mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+                mDrawerLayout.closeDrawers();
+                android.support.v4.app.Fragment fragment =null;
+                fragment = new ProfileFragment();
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                ft.replace(R.id.mainFrame,fragment);
+                ft.commit();
 
             }
         });
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,56 +91,26 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
-    class MyOwnPagerAdapter extends FragmentPagerAdapter{
-        String tabData[] = {"Food","Clothes","Books","Miscellaneous"};
+        ///default fragment
+        navigationView.setCheckedItem(R.id.home);
 
-        public MyOwnPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame,new HomeFragment());
+        ft.commit();
 
-        @Override
-        public Fragment getItem(int position) {
 
-            if(position == 0){
-                return new FoodFragment();
-            }
-
-            else if(position == 1){
-                return new ClothesFragment();
-            }
-
-            else if(position == 2){
-                return new BooksFragment();
-            }
-
-            else if(position == 3){
-                return new MiscellaneousFragment();
-            }
-
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return tabData.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position){
-            return tabData[position];
-        }
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -154,6 +138,12 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            mAuth = FirebaseAuth.getInstance();
+            firebaseUser = mAuth.getCurrentUser();
+            mAuth.signOut();
+            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 
@@ -166,15 +156,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.my_ads) {
-            // Handle the camera action
+        android.support.v4.app.Fragment fragment =null;
+        if (id == R.id.home) {
+            fragment = HomeFragment.newInstance(null,null);
+        } else if (id == R.id.my_ads) {
+            fragment = MyAddsFragment.newInstance(null,null);;
         } else if (id == R.id.interests) {
-
+            fragment = IntersetsFragment.newInstance(null,null);;
         } else if (id == R.id.about) {
-
-        } else if (id == R.id.like_support) {
-
-        } else if (id == R.id.logout) {
+            fragment = new AboutFragment();
+        }else if(id == R.id.like_support){
+            fragment = new LikeSupportFragment();
+        }else if (id == R.id.logout) {
             mAuth = FirebaseAuth.getInstance();
             firebaseUser = mAuth.getCurrentUser();
             mAuth.signOut();
@@ -183,8 +176,22 @@ public class MainActivity extends AppCompatActivity
             finish();
         }
 
+        if(fragment!=null){
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFrame,fragment);
+            ft.commit();
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public static Context getContext(){
+        return k;
+    }
+    @Override
+    public void onFragmentInteraction(String st) {
+        getSupportActionBar().setTitle(st);
+        //title
     }
 }
