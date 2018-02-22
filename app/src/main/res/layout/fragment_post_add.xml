@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.helloworld.seva.PostAddFragment"
+    android:layout_margin="10sp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:windowSoftInputMode="adjustPan"
+    tools:showIn="@layout/fragment_post_add"
+    >
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/top">
+        <ImageView
+            android:id="@+id/addimage"
+            android:layout_width="match_parent"
+            android:layout_height="160sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food"
+            android:alpha="0.5"/>
+
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addimage"
+        android:layout_alignTop="@+id/addimage"
+        android:layout_alignRight="@+id/addimage"
+        android:layout_alignBottom="@+id/addimage"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Add Image"
+        android:textSize="30dp"
+        android:textColor="@color/black" />
+</RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/top"
+        android:layout_marginTop="5dp">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black"
+        app:hintTextAppearance="@color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        >
+        <EditText android:id="@+id/addtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Title"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black"
+        app:hintTextAppearance="@color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        >
+        <EditText android:id="@+id/adddescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Description"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black"
+        app:hintTextAppearance="@color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        >
+        <EditText android:id="@+id/addaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Address"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+    </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            app:hintTextAppearance="@color/black"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            >
+            <EditText android:id="@+id/adddate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Expiry date"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/middle"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/addpost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Post"
+            android:textSize="20dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:background="@color/orange"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+</RelativeLayout>
