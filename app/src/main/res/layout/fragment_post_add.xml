@@ -13,19 +13,20 @@
 
     <RelativeLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:id="@+id/top">
-        <ImageView
+        <ImageButton
             android:id="@+id/addimage"
             android:layout_width="match_parent"
             android:layout_height="160sp"
             android:scaleType="centerCrop"
             android:src="@drawable/food"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            />
 
     <TextView
         android:id="@+id/myImageViewText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/addimage"
         android:layout_alignTop="@+id/addimage"
@@ -34,7 +35,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Add Image"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textColor="@color/black" />
 </RelativeLayout>
 
@@ -120,13 +121,49 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"/>
         </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <CheckBox
+                android:id="@+id/checkbox_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Food"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/checkbox_books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Books"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/checkbox_clothes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Clothes"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/checkbox_misc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Misc."
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/middle"
-        android:layout_marginTop="30dp">
+        android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/addpost"
             android:layout_width="0dp"
@@ -136,7 +173,7 @@
             android:textSize="20dp"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:theme="@style/ThemeOverlay.MyDarkButton"
-            android:background="@color/orange"
+            android:background="@color/colorPrimary"
             android:clickable="true"
             android:focusable="true"/>
     </LinearLayout>

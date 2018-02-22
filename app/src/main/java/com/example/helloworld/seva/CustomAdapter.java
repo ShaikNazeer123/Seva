@@ -1,5 +1,7 @@
 package com.example.helloworld.seva;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -7,13 +9,17 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.helloworld.seva.ListModel;
 import com.example.helloworld.seva.MainActivity;
 import com.example.helloworld.seva.R;
 
 import java.util.ArrayList;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by Shaik Nazeer on 20-02-2018.
@@ -46,6 +52,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView t_description;
         public TextView t_location;
         public TextView t_expiryDate;
+        public ImageView t_call_image;
+        public ImageView t_location_image;
 
         public ViewHolder(View v){
             super(v);
@@ -55,6 +63,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_description = v.findViewById(R.id.item_description);
             this.t_location = v.findViewById(R.id.item_location);
             this.t_expiryDate = v.findViewById(R.id.item_expiry_date);
+            this.t_call_image = v.findViewById(R.id.call);
+            this.t_location_image = v.findViewById(R.id.location);
+
         }
     }
 
@@ -64,12 +75,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //Context doubt
         final View v =  LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         ViewHolder vh = new ViewHolder(v);
+
         return vh;
 
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         tempValues = null;
         tempValues = (ListModel) data.get(position);
         holder.t_name.setText(tempValues.getItemName());
@@ -78,6 +90,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.t_description.setText(tempValues.getItemDescription());
         holder.t_location.setText(tempValues.getItemLocation());
         holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+
+        holder.t_call_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+tempValues.getItemPhoneNumber()));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.t_location_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String map = "http://maps.google.co.in/maps?daddr=" + tempValues.getItemLocation();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                intent.setPackage("com.google.android.apps.maps");
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
