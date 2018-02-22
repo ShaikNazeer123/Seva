@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         LikeSupportFragment.OnFragmentInteractionListener,
         MyAddsFragment.OnFragmentInteractionListener,
         ProfileFragment.OnFragmentInteractionListener,
+        PostAddFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;
@@ -143,6 +145,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
             finish();
             return true;
+        } else if(id==R.id.addbutton){
+            android.support.v4.app.Fragment fragment =null;
+            fragment = new PostAddFragment();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFrame,fragment);
+            ft.commit();
         }
 
         return super.onOptionsItemSelected(item);
