@@ -1,128 +1,192 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f8f8f8">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="3dp"
-        android:layout_margin="8dp"
-        card_view:contentPadding="5dp"
-        card_view:cardBackgroundColor="#FFFFFF">
-
-        <RelativeLayout
+        android:layout_margin="16dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160sp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/top"
                 android:orientation="horizontal"
-                android:weightSum="10">
+                android:weightSum="10"
+                android:gravity="center"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="7dp">
                 <TextView
-
-                    android:text="Title Here"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"
+                    android:id="@+id/item_title"
+                    android:layout_weight="5.45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_weight="5"
-                    android:layout_height="match_parent"
-                    android:gravity="end"
-                    android:layout_marginRight="10dp"
-                    android:paddingRight="5dp"
-                    >
-                    <TextView
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Name Here"
-                        android:id="@+id/name"
-                        
-                        />
-                    <TextView
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="9848490662"
-                        android:layout_below="@id/name"
-                        android:id="@+id/phone_number"/>
-                </RelativeLayout>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/top"
-                android:background="@color/grey_100"
-                android:id="@+id/middle"
-                android:layout_margin="10dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hell\njhkjhjfjhvbg\niugkjhvr\niukjvfbhg\nkkjvuerhgkjehg"
-                        android:textSize="23dp"
-                        android:maxLines="3"/>
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/middle"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                    android:layout_marginBottom="8dp"
+                    android:text="Title Here"
+                    android:maxLines="1"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/icon_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:src="@drawable/ic_location_on_black"/>
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4.55"
+                    >
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location"
-                        android:textSize="15dp"
-                        android:textColor="@color/black"
-                        android:layout_marginLeft="5dp"/>
+                        android:text="Added by : "
+                        android:maxLines="1"
+                        android:textColor="#000"
 
+                        />
+                    <TextView
+                        android:id="@+id/item_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="Shaik Nazeer "
+                        android:maxLines="1"
+                        android:textColor="#000"
+                        />
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food description goes here in 2 lines
+line2"
+                android:layout_marginBottom="7dp"
+                android:layout_marginStart="3dp"
+                android:maxLines="2"
+                android:textColor="#555"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:layout_marginStart="3dp">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="end"
-                    android:paddingRight="10dp"
+                    android:gravity="left"
                     >
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expire by: "
+                        android:text="Posted on: "
                         android:textSize="15sp"
                         android:textColor="@color/black"/>
                     <TextView
-
+                        android:id="@+id/item_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
                         android:textColor="@color/black"
                         android:textSize="15dp"/>
                 </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+                <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
 
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expire by: "
+                    android:textSize="15sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/item_expiry_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20-12-2017"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="12"
+                >
+                <ImageButton
+                    android:id="@+id/like"
+                    android:layout_weight="4"
+                    android:background="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_launcher_foreground"
+                    android:theme="@style/PrimaryFlatButton"
+                    />
+                <ImageButton
+                    android:id="@+id/call"
+                    android:layout_weight="4"
+                    android:background="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_phone"
+                    android:theme="@style/PrimaryFlatButton"
+                    />
+
+                <ImageButton
+                    android:id="@+id/location"
+                    android:layout_weight="4"
+                    android:background="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/ic_contact_round"
+                    android:theme="@style/PrimaryFlatButton"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="phone reference"
+                    android:id="@+id/item_phone_number"
+                    android:visibility="invisible"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="phone reference"
+                    android:id="@+id/item_location"
+                    android:visibility="invisible"/>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
