@@ -100,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements
     private Button mVerifyButton;
     private Button mResendButton;
     private Button mSignOutButton;
+    private Button mDummy1;
+    private Button mDummy2;
 
     ProgressBar progressBar;
 
@@ -128,6 +130,8 @@ public class LoginActivity extends AppCompatActivity implements
         mVerifyButton = (Button) findViewById(R.id.button_verify_phone);
         mResendButton = (Button) findViewById(R.id.button_resend);
         mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+        mDummy1 = (Button) findViewById(R.id.dummy1);
+        mDummy2 = (Button) findViewById(R.id.dummy2);
 
 
         mStartButton.setOnClickListener(this);
@@ -276,10 +280,18 @@ public class LoginActivity extends AppCompatActivity implements
             case STATE_INITIALIZED:
                 enableViews(mStartButton, mPhoneNumberField);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
+                mDummy1.setVisibility(View.VISIBLE);
+                mDummy2.setVisibility(View.VISIBLE);
+                mVerifyButton.setVisibility(View.GONE);
+                mResendButton.setVisibility(View.GONE);
                 mDetailText.setText(null);
                 break;
             case STATE_CODE_SENT:
                 enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
+                mDummy1.setVisibility(View.GONE);
+                mDummy2.setVisibility(View.GONE);
+                mVerifyButton.setVisibility(View.VISIBLE);
+                mResendButton.setVisibility(View.VISIBLE);
                 disableViews(mStartButton);
                 mDetailText.setText(R.string.status_code_sent);
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
@@ -287,6 +299,10 @@ public class LoginActivity extends AppCompatActivity implements
             case STATE_VERIFY_FAILED:
                 enableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
                         mVerificationField);
+                mDummy1.setVisibility(View.GONE);
+                mDummy2.setVisibility(View.GONE);
+                mVerifyButton.setVisibility(View.VISIBLE);
+                mResendButton.setVisibility(View.VISIBLE);
                 mDetailText.setText(R.string.status_verification_failed);
                 mDetailText.setTextColor(Color.parseColor("#dd2c00"));
                 progressBar.setVisibility(View.INVISIBLE);
@@ -294,6 +310,10 @@ public class LoginActivity extends AppCompatActivity implements
             case STATE_VERIFY_SUCCESS:
                 disableViews(mStartButton, mVerifyButton, mResendButton, mPhoneNumberField,
                         mVerificationField);
+                mDummy1.setVisibility(View.VISIBLE);
+                mDummy2.setVisibility(View.VISIBLE);
+                mVerifyButton.setVisibility(View.GONE);
+                mResendButton.setVisibility(View.GONE);
                 mDetailText.setText("Verfication Sucessfull");
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
                 progressBar.setVisibility(View.INVISIBLE);
