@@ -1,6 +1,7 @@
 package com.example.helloworld.seva;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -43,6 +45,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
@@ -81,10 +84,11 @@ public class PostAddFragment extends Fragment {
     RadioGroup radioGroup;
     private TextView myImageViewText;
     private Button mAddPostBtn;
-
+    ImageView datebtn;
+    TextView expiryDate;
+    Calendar myCalendar;
     ImageButton imageView;
-    EditText dobbtn;
-    DatePicker datePicker;
+
 
     int btn;
 
@@ -174,8 +178,8 @@ public class PostAddFragment extends Fragment {
         mAddPostBtn = (Button) mView.findViewById(R.id.addPostBtn);
 
         imageView = (ImageButton) mView.findViewById(R.id.addimage);
-        dobbtn = (EditText) mView.findViewById(R.id.pickdob);
-        datePicker = (DatePicker) mView.findViewById(R.id.datepicker);
+        datebtn = (ImageView) mView.findViewById(R.id.pickexpdate);
+        expiryDate = (TextView) mView.findViewById(R.id.addDate);
 
         btn = radioGroup.getCheckedRadioButtonId();
         imageView.setOnClickListener(new View.OnClickListener(){
@@ -195,9 +199,36 @@ public class PostAddFragment extends Fragment {
             }
         });
 
+        myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+
+        datebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(getActivity(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
     }
 
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        expiryDate.setText(sdf.format(myCalendar.getTime()));
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String st) {
         if (mListener != null) {

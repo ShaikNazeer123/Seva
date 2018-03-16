@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <DatePicker
-
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:id="@+id/datepicker"
@@ -23,8 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layout">
-
-
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
@@ -32,7 +29,6 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
             />
-
 
         <ImageButton
 
@@ -138,19 +134,23 @@
                     android:text="Organization: "
                     android:textStyle="bold"
                     android:textSize="20sp"
+                    android:textColor="@color/black"
                     />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_weight="6"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/black"
                     app:hintTextAppearance="@color/black">
 
                     <EditText
                         android:layout_width="match_parent"
                         android:id="@+id/edit_organization"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
+                        android:hint="organization name"
+=======
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -175,13 +175,13 @@
                     android:text="Address: "
                     android:textStyle="bold"
                     android:textSize="20sp"
+                    android:textColor="@color/black"
                     />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_weight="6"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/black"
                     app:hintTextAppearance="@color/black">
                     <EditText
                         android:layout_width="match_parent"
@@ -189,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:maxLines="1"
+                        android:hint="address"
                         />
                 </android.support.design.widget.TextInputLayout>
 
@@ -211,18 +212,22 @@
                     android:text="Gender: "
                     android:textStyle="bold"
                     android:textSize="20sp"
+                    android:textColor="@color/black"
                     />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_weight="6"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/black"
-                    app:hintTextAppearance="@color/black">
+                    app:hintTextAppearance="@color/grey_100">
                     <EditText
                         android:layout_width="match_parent"
                         android:id="@+id/edit_gender"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
+                        android:hint="gender"
+=======
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -232,14 +237,13 @@
 
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:weightSum="10"
-                android:layout_below="@id/gender_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/dob_field"
-                android:gravity="center"
-                >
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="0dp"
@@ -248,12 +252,29 @@
                     android:text="Date of Birth: "
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    />
+                    android:textColor="@color/black"/>
 
-                <android.support.design.widget.TextInputLayout
+                <TextView
+                    android:id="@+id/dob"
+                    android:layout_weight="5"
                     android:layout_width="0dp"
-                    android:layout_weight="6"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
+                    android:hint=" --/--/--"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    />
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:id="@+id/pickdob"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_picker"
+                    android:textSize="20sp"
+                    android:maxLines="1"
+                    />
+=======
                     android:textColorHint="@color/black"
                     app:hintTextAppearance="@color/black">
                     <EditText
@@ -265,15 +286,18 @@
                         />
                 </android.support.design.widget.TextInputLayout>
 
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
             </LinearLayout>
 
             <Button
+                android:layout_marginTop="30dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:id="@+id/saveBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Save" />
-
         </LinearLayout>
     </RelativeLayout>
     </FrameLayout>

@@ -109,8 +109,16 @@
             android:paddingBottom="8dp"/>
     </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="8.5"
             android:layout_height="wrap_content"
             android:textColorHint="@color/black"
             app:hintTextAppearance="@color/black"
@@ -120,14 +128,25 @@
             <EditText android:id="@+id/addDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="none"
                 android:hint="Expiry date"
+                android:editable="false"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"/>
         </android.support.design.widget.TextInputLayout>
-
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_weight="1.5"
+                android:layout_width="0dp"
+                android:id="@+id/pickexpdate"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_picker"
+                android:textSize="20sp"
+                android:maxLines="1"
+                />
+        </LinearLayout>
         <RadioGroup
             android:id="@+id/radiogroup"
             android:paddingTop="16dp"

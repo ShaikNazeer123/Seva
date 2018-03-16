@@ -1,12 +1,17 @@
 package com.example.helloworld.seva;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,6 +36,9 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -59,8 +67,11 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final int GALLERY_REQUEST = 1;
 
     ImageButton imageView;
-    EditText dobbtn;
+    ImageView dobbtn;
     DatePicker datePicker;
+    TextView dobField;
+    Calendar myCalendar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +95,10 @@ public class EditProfileActivity extends AppCompatActivity {
         mEditGender = (EditText) findViewById(R.id.edit_gender);
 
         imageView = (ImageButton) findViewById(R.id.profileImage);
-        dobbtn = (EditText) findViewById(R.id.pickdob);
+        dobbtn = (ImageView) findViewById(R.id.pickdob);
         datePicker = (DatePicker) findViewById(R.id.datepicker);
+        dobField = (TextView)findViewById(R.id.dob);
+
 
         mDatabaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
@@ -145,13 +158,34 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+
         dobbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                datePicker.setVisibility(View.VISIBLE);
-                datePicker.bringToFront();
+                new DatePickerDialog(EditProfileActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        dobField.setText(sdf.format(myCalendar.getTime()));
     }
 
     @Override
@@ -191,7 +225,8 @@ public class EditProfileActivity extends AppCompatActivity {
         final String organization = mEditOrganization.getText().toString().trim();
         final String address = mEditAddress.getText().toString().trim();
         final String gender = mEditGender.getText().toString().trim();
-        //final String dob = dobbtn.getText().toString().trim();
+        final String dob = dobField.getText().toString().trim();
+        //TODO pick date from date picker
 
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && mImageUri != null){
 
@@ -227,4 +262,5 @@ public class EditProfileActivity extends AppCompatActivity {
             mProgress.dismiss();
         }
     }
+
 }
