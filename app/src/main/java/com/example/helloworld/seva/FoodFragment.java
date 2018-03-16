@@ -67,9 +67,9 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_clothes, container, false);
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
         // Inflate the layout for this fragment
-        rc = (RecyclerView) view.findViewById(R.id.recycler_view_clothes);
+        rc = (RecyclerView) view.findViewById(R.id.recycler_view_food);
         return view;
     }
 
@@ -144,21 +144,18 @@ public class FoodFragment extends Fragment {
                         //Get user map
                         Map<String, String> singlePost = (Map<String, String>) entry.getValue();
 
-                        ListModel temp = null;
+                        ListModel temp = new ListModel();
 
                         description = singlePost.get("description");
                         title = singlePost.get("title");
                         location = singlePost.get("location");
                         expirydate = singlePost.get("date");
-
-                        assert temp != null;
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
                         temp.setItemLocation(location);
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
-
                         customListViewValues.add(temp);
                     }
 
