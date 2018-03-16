@@ -115,7 +115,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     mEditOrganization.setText(userMap.get("organization"));
                     mEditAddress.setText(userMap.get("address"));
                     mEditGender.setText(userMap.get("gender"));
-                    mImageUri = Uri.parse(userMap.get("imageUri"));
+                    dobField.setText(userMap.get("dob"));
+                    if(userMap.get("imageUri") != null) mImageUri = Uri.parse(userMap.get("imageUri"));
 
                     Picasso.with(EditProfileActivity.this).load(userMap.get("image")).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
                         @Override
@@ -128,7 +129,6 @@ public class EditProfileActivity extends AppCompatActivity {
                             Picasso.with(EditProfileActivity.this).load(userMap.get("image")).into(imageView);
                         }
                     });
-                    //mDobField.setText(userMap.get("dob"));
                 }
             }
 
@@ -243,7 +243,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     newPost.child("organization").setValue(organization);
                     newPost.child("address").setValue(address);
                     newPost.child("gender").setValue(gender);
-                    //newPost.child("dob").setValue(dob);
+                    newPost.child("dob").setValue(dob);
                     newPost.child("image").setValue(downloadUri.toString());
                     newPost.child("imageUri").setValue(mImageUri.toString());
                     //newPost.child("uid").setValue(FirebaseAuth.getCurrUser().getUid());

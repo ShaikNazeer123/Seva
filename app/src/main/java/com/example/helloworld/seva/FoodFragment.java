@@ -156,7 +156,7 @@ public class FoodFragment extends Fragment {
                         temp.setItemLocation(location);
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
-                        temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                         customListViewValues.add(temp);
                     }
 
