@@ -87,7 +87,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="Tushar Pahuja"
                     android:textColor="#fff"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -99,7 +98,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="9790726067"
                     android:textColor="#fff"
                     android:textSize="20sp"
                     android:gravity="center"
@@ -153,7 +151,6 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_organization"
                         android:layout_height="wrap_content"
-                        android:text="ABC Ngo"
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -190,7 +187,6 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_address"
                         android:layout_height="wrap_content"
-                        android:text="H.No. 895 Gurgaon"
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -227,7 +223,6 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_gender"
                         android:layout_height="wrap_content"
-                        android:text="Male"
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -265,7 +260,6 @@
                         android:layout_width="match_parent"
                         android:id="@+id/pickdob"
                         android:layout_height="wrap_content"
-                        android:text="03-15-2018"
                         android:textSize="20sp"
                         android:maxLines="1"
                         />

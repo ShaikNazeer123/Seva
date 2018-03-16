@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,7 +91,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.hasChild(mAuth.getCurrentUser().getUid())) {
+                if (dataSnapshot.hasChild(uId)) {
                     Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
 
                     final Map<String, String> userMap;
@@ -101,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     mEditOrganization.setText(userMap.get("organization"));
                     mEditAddress.setText(userMap.get("address"));
                     mEditGender.setText(userMap.get("gender"));
-                    mImageUri = Uri.parse(userMap.get("image"));
+                    mImageUri = Uri.parse(userMap.get("imageUri"));
 
                     Picasso.with(EditProfileActivity.this).load(userMap.get("image")).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
                         @Override
@@ -190,9 +191,9 @@ public class EditProfileActivity extends AppCompatActivity {
         final String organization = mEditOrganization.getText().toString().trim();
         final String address = mEditAddress.getText().toString().trim();
         final String gender = mEditGender.getText().toString().trim();
-        final String dob = dobbtn.getText().toString().trim();
+        //final String dob = dobbtn.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && !TextUtils.isEmpty(dob) && mImageUri!=null){
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && mImageUri != null){
 
             StorageReference filepath = mStorage.child("Profile_Images").child(mImageUri.getLastPathSegment());
 
@@ -207,8 +208,9 @@ public class EditProfileActivity extends AppCompatActivity {
                     newPost.child("organization").setValue(organization);
                     newPost.child("address").setValue(address);
                     newPost.child("gender").setValue(gender);
-                    newPost.child("dob").setValue(dob);
+                    //newPost.child("dob").setValue(dob);
                     newPost.child("image").setValue(downloadUri.toString());
+                    newPost.child("imageUri").setValue(mImageUri.toString());
                     //newPost.child("uid").setValue(FirebaseAuth.getCurrUser().getUid());
 
                     mProgress.dismiss();
@@ -219,6 +221,10 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             });
 
+        }
+        else{
+            Toast.makeText(this,"Any field should not be empty",Toast.LENGTH_SHORT).show();
+            mProgress.dismiss();
         }
     }
 }
