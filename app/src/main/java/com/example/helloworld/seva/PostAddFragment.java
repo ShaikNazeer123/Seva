@@ -281,7 +281,7 @@ public class PostAddFragment extends Fragment {
         final String title = mAddTitle.getText().toString().trim();
         final String description = mAddDescription.getText().toString().trim();
         final String address = mAddAddress.getText().toString().trim();
-        final String date = mAddDate.getText().toString().trim();
+        final String date = expiryDate.getText().toString().trim();
 
         btn = radioGroup.getCheckedRadioButtonId();
 
