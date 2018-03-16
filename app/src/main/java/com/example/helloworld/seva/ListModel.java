@@ -1,5 +1,7 @@
 package com.example.helloworld.seva;
 
+import android.net.Uri;
+
 /**
  * Created by Shaik Nazeer on 20-02-2018.
  */
@@ -11,6 +13,8 @@ public class ListModel {
     private String description;
     private String location;
     private String expiryDate;
+
+    private Uri mImageUri;
 
     public String getItemName(){
         return name;
@@ -58,5 +62,13 @@ public class ListModel {
 
     public void setItemExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public Uri getImageUri(){
+        return mImageUri;
+    }
+
+    public void setImageUri(Uri imageUri) {
+        this.mImageUri = imageUri;
     }
 }
