@@ -217,9 +217,10 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public static Context getContext(){
-        return k;
+    public Context getContext(){
+        return this;
     }
+
     @Override
     public void onFragmentInteraction(String st) {
         getSupportActionBar().setTitle(st);

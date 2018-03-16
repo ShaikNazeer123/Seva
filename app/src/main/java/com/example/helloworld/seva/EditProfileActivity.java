@@ -16,13 +16,21 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -66,6 +74,8 @@ public class EditProfileActivity extends AppCompatActivity {
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        uId = mAuth.getCurrentUser().getUid();
+
         mEditName = (EditText) findViewById(R.id.edit_name);
         mEditContact = (EditText) findViewById(R.id.edit_contact);
         mEditOrganization = (EditText) findViewById(R.id.edit_organization);
@@ -76,6 +86,43 @@ public class EditProfileActivity extends AppCompatActivity {
         dobbtn = (EditText) findViewById(R.id.pickdob);
         datePicker = (DatePicker) findViewById(R.id.datepicker);
 
+        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.hasChild(mAuth.getCurrentUser().getUid())) {
+                    Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
+
+                    final Map<String, String> userMap;
+                    userMap = currMap.get(uId);
+
+                    mEditName.setText(userMap.get("name"));
+                    mEditContact.setText(userMap.get("contact"));
+                    mEditOrganization.setText(userMap.get("organization"));
+                    mEditAddress.setText(userMap.get("address"));
+                    mEditGender.setText(userMap.get("gender"));
+                    mImageUri = Uri.parse(userMap.get("image"));
+
+                    Picasso.with(EditProfileActivity.this).load(userMap.get("image")).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            Picasso.with(EditProfileActivity.this).load(userMap.get("image")).into(imageView);
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(EditProfileActivity.this).load(userMap.get("image")).into(imageView);
+                        }
+                    });
+                    //mDobField.setText(userMap.get("dob"));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mSaveBtn = (Button)findViewById(R.id.saveBtn);
 
@@ -138,15 +185,14 @@ public class EditProfileActivity extends AppCompatActivity {
         mProgress.setMessage("Saving Profile...");
         mProgress.show();
 
-        uId = mAuth.getCurrentUser().getUid();
-
         final String name = mEditName.getText().toString().trim();
         final String contact = mEditContact.getText().toString().trim();
         final String organization = mEditOrganization.getText().toString().trim();
         final String address = mEditAddress.getText().toString().trim();
         final String gender = mEditGender.getText().toString().trim();
+        final String dob = dobbtn.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && mImageUri!=null){
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && !TextUtils.isEmpty(dob) && mImageUri!=null){
 
             StorageReference filepath = mStorage.child("Profile_Images").child(mImageUri.getLastPathSegment());
 
@@ -161,6 +207,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     newPost.child("organization").setValue(organization);
                     newPost.child("address").setValue(address);
                     newPost.child("gender").setValue(gender);
+                    newPost.child("dob").setValue(dob);
                     newPost.child("image").setValue(downloadUri.toString());
                     //newPost.child("uid").setValue(FirebaseAuth.getCurrUser().getUid());
 
