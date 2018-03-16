@@ -195,6 +195,7 @@ public class MyAddsFragment extends Fragment {
                             temp.setItemLocation(location);
                             temp.setItemTitle(title);
                             temp.setItemExpiryDate(expirydate);
+                            temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                             customListViewValues.add(temp);
                         }
                     }
@@ -236,6 +237,7 @@ public class MyAddsFragment extends Fragment {
                             temp.setItemLocation(location);
                             temp.setItemTitle(title);
                             temp.setItemExpiryDate(expirydate);
+                            temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                             customListViewValues.add(temp);
                         }
                     }
@@ -277,6 +279,7 @@ public class MyAddsFragment extends Fragment {
                             temp.setItemLocation(location);
                             temp.setItemTitle(title);
                             temp.setItemExpiryDate(expirydate);
+                            temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                             customListViewValues.add(temp);
                         }
                     }
@@ -317,6 +320,7 @@ public class MyAddsFragment extends Fragment {
                             temp.setItemLocation(location);
                             temp.setItemTitle(title);
                             temp.setItemExpiryDate(expirydate);
+                            temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                             customListViewValues.add(temp);
                         }
                         Log.e("size",customListViewValues.size()+"");
