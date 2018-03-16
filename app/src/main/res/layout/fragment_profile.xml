@@ -6,50 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout">
+        android:layout_height="wrap_content">
+        <DatePicker
 
-
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/datepicker"
+            android:layout_height="400dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey_100"
             />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-
-            android:clickable="true"
-            app:civ_border_width="3dp"
-            app:civ_border_color="#FFFFFFFF"
-
-            android:id="@+id/profile"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-130dp"
-            android:elevation="5dp"
-            android:padding="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/about_icon_facebook" />
-
         <RelativeLayout
-            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/header_cover_image"
-            android:background="#ebca0707"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:layout_height="match_parent"
+            android:id="@+id/layout">
+
 
             <ImageView
-                android:id="@+id/edit_button"
+                android:id="@+id/header_cover_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                />
+
+
+            <ImageButton
+
+                android:id="@+id/profileImage"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/header_cover_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-130dp"
+                android:elevation="5dp"
+                android:padding="20dp"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
+                />
+
+            <ImageView
+                android:id="@+id/profile_edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -58,233 +58,226 @@
                 android:layout_marginTop="16dp"
                 android:clickable="true"
 
-                android:src="@android:drawable/ic_menu_edit" />
+                android:src="@android:drawable/ic_menu_edit"
+                tools:ignore="DuplicateIds" />
+
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/header_cover_image"
+                android:background="#ebca0707"
+                android:elevation="4dp"
+                android:paddingBottom="24dp">
+
+                <View
+                    android:id="@+id/edit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="30dp"
+                    android:clickable="true"
+
+                    android:src="@android:drawable/ic_menu_edit" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/basic_info"
+                    android:layout_below="@id/edit_button"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/name_field"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:textColor="#fff"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:id="@+id/contact_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/basic_info"
-                android:layout_below="@id/edit_button"
+                android:layout_below="@+id/profile_layout"
+                android:background="#fff"
+                android:elevation="4dp"
                 android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
                 >
 
-                <TextView
-                    android:id="@+id/main_name"
-                    android:layout_gravity="center"
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:text="User name"
-                    android:textColor="#fff"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
-
-                <EditText
-                    android:id="@+id/edit_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="22dp"
-                    android:text="Tushar Pahuja"
-                    android:visibility="gone"
-                    android:textColor="#fff"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/main_contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/organization_layout"
                     android:layout_gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:text="970726067"
-                    android:textColor="#fff"
-                    android:textSize="20sp"
-                    />
+                    android:gravity="center"
+                    >
 
-                <EditText
-                    android:id="@+id/edit_contact"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Organization: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/black"
+                        app:hintTextAppearance="@color/black">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/organization_field"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:maxLines="1"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/organization_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:text="9790726067"
-                    android:visibility="gone"
-                    android:textColor="#fff"
-                    android:textSize="20sp"
-                    />
+                    android:id="@+id/address_layout"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Address: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/black"
+                        app:hintTextAppearance="@color/black">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/address_field"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:maxLines="1"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/address_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_layout"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Gender: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/black"
+                        app:hintTextAppearance="@color/black">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/gender_field"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:maxLines="1"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/gender_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dob_layout"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Date of Birth: "
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/black"
+                        app:hintTextAppearance="@color/black">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/dob_field"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:maxLines="1"
+                            />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
-
         </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/profile_layout"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#fff"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingRight="5dp"
-            android:paddingLeft="5dp"
-            >
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/organization_field"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Organization: "
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/main_organization"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="ABC Ngo"
-                    android:textSize="20sp"
-                    />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/edit_organization"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="ABC Ngo"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_below="@id/organization_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/address_field"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Address: "
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/main_address"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="H.No. 895 Gurgaon"
-                    android:textSize="20sp"
-                    />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:id="@+id/edit_address"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="H.No. 895 Gurgaon"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_below="@id/address_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/gender_field"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Gender: "
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/main_gender"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Male"
-                    android:textSize="20sp"
-                    />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:id="@+id/edit_gender"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:text="Male"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_below="@id/gender_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dob_field"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Date of Birth: "
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="6"
-                    android:layout_height="wrap_content"
-                    android:text="28/03/1997"
-                    android:textSize="20sp"
-                    />
-
-                <DatePicker
-                    android:id="@+id/datePicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_weight="6" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </RelativeLayout>
+    </FrameLayout>
 </ScrollView>

@@ -1,5 +1,8 @@
 package com.example.helloworld.seva;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -61,11 +64,17 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity implements
-        View.OnClickListener {
+        View.OnClickListener,
+        ProfileFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "PhoneAuthActivity";
 
@@ -81,6 +90,8 @@ public class LoginActivity extends AppCompatActivity implements
 
     private FirebaseAuth mAuth;
 
+    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseUsers;
 
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
@@ -105,6 +116,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     ProgressBar progressBar;
 
+    String user_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +127,6 @@ public class LoginActivity extends AppCompatActivity implements
         }
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
 
         mPhoneNumberViews = (ViewGroup) findViewById(R.id.phone_auth_fields);
         mSignedInViews = (ViewGroup) findViewById(R.id.signed_in_buttons);
@@ -141,6 +152,8 @@ public class LoginActivity extends AppCompatActivity implements
 
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -314,7 +327,7 @@ public class LoginActivity extends AppCompatActivity implements
                 mDummy2.setVisibility(View.VISIBLE);
                 mVerifyButton.setVisibility(View.GONE);
                 mResendButton.setVisibility(View.GONE);
-                mDetailText.setText("Verfication Sucessfull");
+                mDetailText.setText("Verfication Successful");
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
                 progressBar.setVisibility(View.INVISIBLE);
                 if (cred != null) {
@@ -344,10 +357,10 @@ public class LoginActivity extends AppCompatActivity implements
             mStatusText.setText(R.string.signed_out);;
         } else {
             mPhoneNumberViews.setVisibility(View.GONE);
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-
+            checkUserExist();
+            //Intent intent = new Intent(this, MainActivity.class);
+            //startActivity(intent);
+            //finish();
         }
     }
 
@@ -408,8 +421,66 @@ public class LoginActivity extends AppCompatActivity implements
         }
     }
 
+    private void checkUserExist() {
+
+        if(mAuth.getCurrentUser() != null) {
+            user_id = mAuth.getCurrentUser().getUid();
+
+            mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.hasChild(user_id)) {
+                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(mainIntent);
+                    } else {
+
+                        Bundle extraData = new Bundle();
+                        extraData.putString("user_id",user_id);
+                        extraData.putString("first","Yes");
+
+                        Intent mainIntent = new Intent(LoginActivity.this, EditProfileActivity.class);
+                        mainIntent.putExtras(extraData);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(mainIntent);
+
+                        /*
+
+                        //Bundle args = new Bundle();
+                        //args.putParcelable("my_custom_object", user_id);
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        //profileFragment.setArguments(args);
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.login_container, profileFragment);
+                        fragmentTransaction.commit();
+
+                        */
+
+                        //FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+                        //ProfileFragment profileFragment = new ProfileFragment();
+                        //fragmentTransaction.replace(R.id.activity_login, profileFragment);
+                        //fragmentTransaction.commit();
+
+                        //Intent profileIntent = new Intent(LoginActivity.this, ProfileFragment.class);
+                        //profileIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //profileIntent.putExtra("user_id",user_id);
+                        //startActivity(profileIntent);
+                        //finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
 
 
+    @Override
+    public void onFragmentInteraction(String st) {
 
-
+    }
 }

@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         View ll = navigationView.getHeaderView(0);
         profileBtn = (ImageView) ll.findViewById(R.id.profilebtn);
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("btn ","Listner");
+                Log.e("btn ","Listener");
                 DrawerLayout mDrawerLayout;
                 mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
                 mDrawerLayout.closeDrawers();
@@ -80,6 +81,30 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+
+        /*
+        Intent intentExtras = getIntent();
+        Bundle extraData = intentExtras.getExtras();
+
+        String value = (String)extraData.getString("first");
+
+        Log.e("One","tell me1");
+        if(value.compareTo("Yes") == 0 ){
+            Log.e("Two","tell me2");
+            android.support.v4.app.Fragment fragment;
+            fragment = new ProfileFragment();
+            Log.e("Three","tell me3");
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            Log.e("Four","tell me4");
+            ft.replace(R.id.mainFrame,fragment);
+            Log.e("Five","tell me5");
+            ft.commit();
+            Log.e("Six","tell me6");
+        }
+        Log.e("Seven","tell me7");
+
+        */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -192,9 +217,10 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public static Context getContext(){
-        return k;
+    public Context getContext(){
+        return this;
     }
+
     @Override
     public void onFragmentInteraction(String st) {
         getSupportActionBar().setTitle(st);

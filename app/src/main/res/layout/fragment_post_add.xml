@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="160sp"
             android:scaleType="centerCrop"
-            android:src="@drawable/food"
             android:alpha="0.5"
             />
 
@@ -61,7 +60,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="8dp"
         >
-        <EditText android:id="@+id/addtitle"
+        <EditText android:id="@+id/addTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -80,7 +79,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="8dp"
         >
-        <EditText android:id="@+id/adddescription"
+        <EditText android:id="@+id/addDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -99,7 +98,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="8dp"
         >
-        <EditText android:id="@+id/addaddress"
+        <EditText android:id="@+id/addAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -118,7 +117,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="8dp"
             >
-            <EditText android:id="@+id/adddate"
+            <EditText android:id="@+id/addDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -129,42 +128,45 @@
                 android:paddingBottom="8dp"/>
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/radiogroup"
             android:paddingTop="16dp"
             android:paddingBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="4">
-            <CheckBox
-                android:id="@+id/checkbox_food"
+
+            <RadioButton
+                android:id="@+id/foodOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Food"
                 android:layout_weight="1"/>
-            <CheckBox
-                android:id="@+id/checkbox_books"
+            <RadioButton
+                android:id="@+id/booksOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Books"
                 android:layout_weight="1"/>
-            <CheckBox
-                android:id="@+id/checkbox_clothes"
+            <RadioButton
+                android:id="@+id/clothesOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Clothes"
                 android:layout_weight="1"/>
-            <CheckBox
-                android:id="@+id/checkbox_misc"
+            <RadioButton
+                android:id="@+id/miscOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Misc."
                 android:layout_weight="1"/>
-        </LinearLayout>
+            </RadioGroup>
+
     </LinearLayout>
 
 
@@ -175,7 +177,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/addpost"
+            android:id="@+id/addPostBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
