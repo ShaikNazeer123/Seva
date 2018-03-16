@@ -83,7 +83,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:text="Tushar Pahuja"
                     android:textColor="#fff"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -95,7 +94,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="9790726067"
                     android:textColor="#fff"
                     android:textSize="20sp"
                     android:gravity="center"
@@ -149,7 +147,10 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_organization"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
                         android:hint="organization name"
+=======
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -223,7 +224,10 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_gender"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
                         android:hint="gender"
+=======
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
                         android:textSize="20sp"
                         android:maxLines="1"
                         />
@@ -255,6 +259,7 @@
                     android:layout_weight="5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:hint=" --/--/--"
                     android:textSize="20sp"
                     android:textColor="@color/black"
@@ -269,6 +274,19 @@
                     android:textSize="20sp"
                     android:maxLines="1"
                     />
+=======
+                    android:textColorHint="@color/black"
+                    app:hintTextAppearance="@color/black">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/pickdob"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:maxLines="1"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+>>>>>>> cdf43cd068dfce4c4928c22d4fb1dd95b727d908
             </LinearLayout>
 
             <Button

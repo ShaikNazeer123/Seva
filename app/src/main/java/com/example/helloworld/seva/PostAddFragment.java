@@ -310,6 +310,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
+                        newPost.child("imageUri").setValue(mImageUri);
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -327,6 +328,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
+                        newPost.child("imageUri").setValue(mImageUri);
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -344,6 +346,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
+                        newPost.child("imageUri").setValue(mImageUri);
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -362,6 +365,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
+                        newPost.child("imageUri").setValue(mImageUri);
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
