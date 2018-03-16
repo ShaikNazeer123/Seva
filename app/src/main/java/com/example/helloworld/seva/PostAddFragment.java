@@ -1,5 +1,6 @@
 package com.example.helloworld.seva;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -298,7 +299,7 @@ public class PostAddFragment extends Fragment {
                     Date c = Calendar.getInstance().getTime();
                     System.out.println("Current time => " + c);
 
-                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
                     String formattedDate = df.format(c);
 
                     if(btn==R.id.foodOption){
@@ -310,7 +311,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
-                        newPost.child("imageUri").setValue(mImageUri);
+                        newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -328,7 +329,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
-                        newPost.child("imageUri").setValue(mImageUri);
+                        newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -346,7 +347,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
-                        newPost.child("imageUri").setValue(mImageUri);
+                        newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
@@ -365,7 +366,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
-                        newPost.child("imageUri").setValue(mImageUri);
+                        newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);

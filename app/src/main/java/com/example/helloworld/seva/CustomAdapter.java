@@ -1,6 +1,7 @@
 package com.example.helloworld.seva;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -9,6 +10,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView t_expiryDate;
         public ImageView t_call_image;
         public ImageView t_location_image;
+        public ImageButton t_post_image;
+
 
         public ViewHolder(View v){
             super(v);
@@ -65,7 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_expiryDate = v.findViewById(R.id.item_expiry_date);
             this.t_call_image = v.findViewById(R.id.call);
             this.t_location_image = v.findViewById(R.id.location);
-
+            this.t_post_image = v.findViewById(R.id.postImage);
         }
     }
 
@@ -84,12 +88,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         tempValues = null;
         tempValues = (ListModel) data.get(position);
-        holder.t_name.setText(tempValues.getItemName());
-        holder.t_title.setText(tempValues.getItemTitle());
-        holder.t_phoneNumber.setText(tempValues.getItemPhoneNumber());
-        holder.t_description.setText(tempValues.getItemDescription());
-        holder.t_location.setText(tempValues.getItemLocation());
-        holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+        if(tempValues != null) {
+            holder.t_name.setText(tempValues.getItemName());
+            holder.t_title.setText(tempValues.getItemTitle());
+            holder.t_phoneNumber.setText(tempValues.getItemPhoneNumber());
+            holder.t_description.setText(tempValues.getItemDescription());
+            holder.t_location.setText(tempValues.getItemLocation());
+            holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+            holder.t_post_image.setImageURI(tempValues.getImageUri());
+        }
 
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
             @Override
