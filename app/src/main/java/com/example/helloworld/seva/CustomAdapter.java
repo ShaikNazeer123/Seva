@@ -69,9 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_expiryDate = v.findViewById(R.id.item_expiry_date);
             this.t_call_image = v.findViewById(R.id.call);
             this.t_location_image = v.findViewById(R.id.location);
-            this.t_post_image = v.findViewById(R.id.addimage);
-
-
+            this.t_post_image = v.findViewById(R.id.postImage);
         }
     }
 
@@ -90,12 +88,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         tempValues = null;
         tempValues = (ListModel) data.get(position);
-        holder.t_name.setText(tempValues.getItemName());
-        holder.t_title.setText(tempValues.getItemTitle());
-        holder.t_phoneNumber.setText(tempValues.getItemPhoneNumber());
-        holder.t_description.setText(tempValues.getItemDescription());
-        holder.t_location.setText(tempValues.getItemLocation());
-        holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+        if(tempValues != null) {
+            holder.t_name.setText(tempValues.getItemName());
+            holder.t_title.setText(tempValues.getItemTitle());
+            holder.t_phoneNumber.setText(tempValues.getItemPhoneNumber());
+            holder.t_description.setText(tempValues.getItemDescription());
+            holder.t_location.setText(tempValues.getItemLocation());
+            holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+            holder.t_post_image.setImageURI(tempValues.getImageUri());
+        }
 
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -68,7 +68,7 @@ public class ListModel {
         return mImageUri;
     }
 
-    public void setImageUri(Uri imageUri) {
+    public void setmImageUri(Uri imageUri) {
         this.mImageUri = imageUri;
     }
 }
