@@ -289,7 +289,7 @@ public class PostAddFragment extends Fragment {
 
         uId = mAuth.getCurrentUser().getUid();
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+        mDatabaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String,Map<String,String> > currMap = (Map<String,Map<String,String> >) dataSnapshot.getValue();
