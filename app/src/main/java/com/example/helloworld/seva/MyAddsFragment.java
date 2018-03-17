@@ -150,7 +150,7 @@ public class MyAddsFragment extends Fragment {
     public void getData() {
         customListViewValues.clear();
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+        mDatabaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -170,7 +170,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseFood.addValueEventListener(new ValueEventListener() {
+        mDatabaseFood.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
@@ -215,16 +215,13 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseBooks.addValueEventListener(new ValueEventListener() {
+        mDatabaseBooks.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
                 //iterate through each Post
-
                 if(currMap != null) {
                     for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
-
                         //Get user map
                         Map<String, String> singlePost = (Map<String, String>) entry.getValue();
                         if (singlePost.get("uid").equals(uId)) {
@@ -259,13 +256,11 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseClothes.addValueEventListener(new ValueEventListener() {
+        mDatabaseClothes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
                 //iterate through each Post
-
                 if(currMap != null) {
                     for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
 
@@ -303,7 +298,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseMisc.addValueEventListener(new ValueEventListener() {
+        mDatabaseMisc.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
