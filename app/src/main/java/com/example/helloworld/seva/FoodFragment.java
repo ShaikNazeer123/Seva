@@ -59,6 +59,7 @@ public class FoodFragment extends Fragment {
     private String image;
 
     private String uId;
+    private String postUID;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -112,26 +113,6 @@ public class FoodFragment extends Fragment {
     public void getData() {
         customListViewValues.clear();
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.hasChild(uId)) {
-                    Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
-                    final Map<String, String> userMap;
-                    userMap = currMap.get(uId);
-
-                    name = userMap.get("name");
-                    phonenumber = userMap.get("contact");
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         mDatabaseFood.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -152,6 +133,10 @@ public class FoodFragment extends Fragment {
                         location = singlePost.get("location");
                         expirydate = singlePost.get("date");
                         image = singlePost.get("image");
+                        postUID = singlePost.get("uid");
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);

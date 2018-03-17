@@ -110,26 +110,6 @@ public class ClothesFragment extends Fragment {
     public void getData() {
         customListViewValues.clear();
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.hasChild(uId)) {
-                    Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
-                    final Map<String, String> userMap;
-                    userMap = currMap.get(uId);
-
-                    name = userMap.get("name");
-                    phonenumber = userMap.get("contact");
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         mDatabaseClothes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -150,6 +130,10 @@ public class ClothesFragment extends Fragment {
                         location = singlePost.get("location");
                         expirydate = singlePost.get("date");
                         image = singlePost.get("image");
+
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);

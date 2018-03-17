@@ -59,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView t_expiryDate;
         public ImageView t_call_image;
         public ImageView t_location_image;
-        public ImageButton t_post_image;
+        public ImageView t_post_image;
 
 
         public ViewHolder(View v){

@@ -89,7 +89,7 @@ public class PostAddFragment extends Fragment {
     ImageView datebtn;
     TextView expiryDate;
     Calendar myCalendar;
-    ImageButton imageView;
+    ImageView imageView;
 
 
     int btn;
@@ -103,6 +103,8 @@ public class PostAddFragment extends Fragment {
     private ProgressDialog mProgress;
 
     private String uId;
+    private String name;
+    private String contact;
 
     private static final int GALLERY_REQUEST = 1;
 
@@ -179,7 +181,7 @@ public class PostAddFragment extends Fragment {
 
         mAddPostBtn = (Button) mView.findViewById(R.id.addPostBtn);
 
-        imageView = (ImageButton) mView.findViewById(R.id.addimage);
+        imageView = (ImageView) mView.findViewById(R.id.addimage);
         datebtn = (ImageView) mView.findViewById(R.id.pickexpdate);
         expiryDate = (TextView) mView.findViewById(R.id.addDate);
 
@@ -284,6 +286,24 @@ public class PostAddFragment extends Fragment {
 
         uId = mAuth.getCurrentUser().getUid();
 
+        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String,Map<String,String> > currMap = (Map<String,Map<String,String> >) dataSnapshot.getValue();
+
+                final Map<String,String> userMap;
+                userMap = currMap.get(uId);
+
+                name = userMap.get("name");
+                contact = userMap.get("contact");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         final String title = mAddTitle.getText().toString().trim();
         final String description = mAddDescription.getText().toString().trim();
         final String address = mAddAddress.getText().toString().trim();
@@ -315,6 +335,8 @@ public class PostAddFragment extends Fragment {
                         newPost.child("address").setValue(address);
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
+                        newPost.child("name").setValue(name);
+                        newPost.child("contact").setValue(contact);
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
@@ -333,6 +355,8 @@ public class PostAddFragment extends Fragment {
                         newPost.child("address").setValue(address);
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
+                        newPost.child("name").setValue(name);
+                        newPost.child("contact").setValue(contact);
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
@@ -351,6 +375,8 @@ public class PostAddFragment extends Fragment {
                         newPost.child("address").setValue(address);
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
+                        newPost.child("name").setValue(name);
+                        newPost.child("contact").setValue(contact);
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
@@ -370,6 +396,8 @@ public class PostAddFragment extends Fragment {
                         newPost.child("address").setValue(address);
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
+                        newPost.child("name").setValue(uId);
+                        newPost.child("contact").setValue(uId);
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
