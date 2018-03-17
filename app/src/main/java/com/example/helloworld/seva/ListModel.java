@@ -13,6 +13,7 @@ public class ListModel {
     private String description;
     private String location;
     private String expiryDate;
+    private String image;
 
     private Uri mImageUri;
 
@@ -70,5 +71,13 @@ public class ListModel {
 
     public void setmImageUri(Uri imageUri) {
         this.mImageUri = imageUri;
+    }
+
+    public String getImage(){
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

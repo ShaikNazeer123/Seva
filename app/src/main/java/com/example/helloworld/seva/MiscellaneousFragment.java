@@ -52,6 +52,7 @@ public class MiscellaneousFragment extends Fragment {
     private String description;
     private String location;
     private String expirydate;
+    private String image;
 
     private String uId;
 
@@ -131,13 +132,15 @@ public class MiscellaneousFragment extends Fragment {
                         title = singlePost.get("title");
                         location = singlePost.get("location");
                         expirydate = singlePost.get("date");
+                        image = singlePost.get("image");
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
                         temp.setItemLocation(location);
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
-                        temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        temp.setImage(image);
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                         customListViewValues.add(temp);
                     }
 

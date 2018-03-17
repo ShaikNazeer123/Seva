@@ -18,6 +18,9 @@ import android.widget.Toast;
 import com.example.helloworld.seva.ListModel;
 import com.example.helloworld.seva.MainActivity;
 import com.example.helloworld.seva.R;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -85,7 +88,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         tempValues = null;
         tempValues = (ListModel) data.get(position);
         if(tempValues != null) {
@@ -95,7 +98,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.t_description.setText(tempValues.getItemDescription());
             holder.t_location.setText(tempValues.getItemLocation());
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
-            holder.t_post_image.setImageURI(tempValues.getImageUri());
+
+            Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
+                @Override
+                public void onSuccess() {
+                    Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
+                }
+            });
+
+            //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
 
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
