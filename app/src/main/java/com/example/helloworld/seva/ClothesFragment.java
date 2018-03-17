@@ -56,6 +56,7 @@ public class ClothesFragment extends Fragment {
     private String image;
 
     private String uId;
+    private String postDate;
 
 
     public ClothesFragment() {
@@ -130,9 +131,9 @@ public class ClothesFragment extends Fragment {
                         location = singlePost.get("location");
                         expirydate = singlePost.get("date");
                         image = singlePost.get("image");
-
                         name = singlePost.get("name");
                         phonenumber = singlePost.get("contact");
+                        postDate = singlePost.get("postdate");
 
                         temp.setItemName(name);
                         temp.setItemDescription(description);
@@ -141,6 +142,8 @@ public class ClothesFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
+                        temp.setItemPostDate(postDate);
+
                         if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                         customListViewValues.add(temp);
                     }

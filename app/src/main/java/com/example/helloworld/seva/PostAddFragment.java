@@ -399,8 +399,8 @@ public class PostAddFragment extends Fragment {
                         newPost.child("address").setValue(address);
                         newPost.child("date").setValue(date);
                         newPost.child("uid").setValue(uId);
-                        newPost.child("name").setValue(uId);
-                        newPost.child("contact").setValue(uId);
+                        newPost.child("name").setValue(name);
+                        newPost.child("contact").setValue(contact);
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);

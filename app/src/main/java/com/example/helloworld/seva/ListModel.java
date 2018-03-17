@@ -14,6 +14,7 @@ public class ListModel {
     private String location;
     private String expiryDate;
     private String image;
+    private String itemPostDate;
 
     private Uri mImageUri;
 
@@ -79,5 +80,13 @@ public class ListModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getItemPostDate(){
+        return itemPostDate;
+    }
+
+    public void setItemPostDate(String itemPostDate) {
+        this.itemPostDate = itemPostDate;
     }
 }

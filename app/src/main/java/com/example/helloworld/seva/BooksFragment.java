@@ -55,6 +55,7 @@ public class BooksFragment extends Fragment {
     private String location;
     private String expirydate;
     private String image;
+    private String postDate;
 
     private String uId;
 
@@ -122,6 +123,7 @@ public class BooksFragment extends Fragment {
                         image = singlePost.get("image");
                         name = singlePost.get("name");
                         phonenumber = singlePost.get("contact");
+                        postDate = singlePost.get("postdate");
 
                         temp.setItemName(name);
                         temp.setItemDescription(description);
@@ -130,6 +132,7 @@ public class BooksFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
+                        temp.setItemPostDate(postDate);
                         if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                         customListViewValues.add(temp);
                     }

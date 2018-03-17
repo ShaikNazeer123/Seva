@@ -60,6 +60,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView t_call_image;
         public ImageView t_location_image;
         public ImageView t_post_image;
+        public TextView t_item_post_date;
 
 
         public ViewHolder(View v){
@@ -73,6 +74,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_call_image = v.findViewById(R.id.call);
             this.t_location_image = v.findViewById(R.id.location);
             this.t_post_image = v.findViewById(R.id.postImage);
+            this.t_item_post_date = v.findViewById(R.id.item_post_date);
         }
     }
 
@@ -98,6 +100,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.t_description.setText(tempValues.getItemDescription());
             holder.t_location.setText(tempValues.getItemLocation());
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
+            holder.t_item_post_date.setText(tempValues.getItemPostDate());
 
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override

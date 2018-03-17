@@ -60,6 +60,7 @@ public class FoodFragment extends Fragment {
 
     private String uId;
     private String postUID;
+    private String postDate;
 
     public FoodFragment() {
         // Required empty public constructor
@@ -136,6 +137,7 @@ public class FoodFragment extends Fragment {
                         postUID = singlePost.get("uid");
                         name = singlePost.get("name");
                         phonenumber = singlePost.get("contact");
+                        postDate = singlePost.get("postdate");
 
                         temp.setItemName(name);
                         temp.setItemDescription(description);
@@ -144,6 +146,7 @@ public class FoodFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
+                        temp.setItemPostDate(postDate);
 
                         if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                         customListViewValues.add(temp);
