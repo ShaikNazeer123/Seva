@@ -61,6 +61,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView t_location_image;
         public ImageView t_post_image;
         public TextView t_item_post_date;
+        public ImageView t_like_image;
 
 
         public ViewHolder(View v){
@@ -75,6 +76,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_location_image = v.findViewById(R.id.location);
             this.t_post_image = v.findViewById(R.id.postImage);
             this.t_item_post_date = v.findViewById(R.id.item_post_date);
+            this.t_like_image = v.findViewById(R.id.like);
         }
     }
 
@@ -137,6 +139,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             }
         });
 
+        holder.t_like_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.t_like_image.getTag().equals("0")){
+                    //state unlike --> like
+                    holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
+                    holder.t_like_image.setTag("1");
+                }
+                else{
+                    holder.t_like_image.setImageResource(R.mipmap.ic_like);
+                    holder.t_like_image.setTag("0");
+                }
+            }
+        });
     }
 
     @Override
