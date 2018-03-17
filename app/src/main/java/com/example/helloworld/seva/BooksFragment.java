@@ -118,7 +118,7 @@ public class BooksFragment extends Fragment {
 
                         description = singlePost.get("description");
                         title = singlePost.get("title");
-                        location = singlePost.get("location");
+                        location = singlePost.get("address");
                         expirydate = singlePost.get("date");
                         image = singlePost.get("image");
                         name = singlePost.get("name");

@@ -131,7 +131,7 @@ public class FoodFragment extends Fragment {
 
                         description = singlePost.get("description");
                         title = singlePost.get("title");
-                        location = singlePost.get("location");
+                        location = singlePost.get("address");
                         expirydate = singlePost.get("date");
                         image = singlePost.get("image");
                         postUID = singlePost.get("uid");

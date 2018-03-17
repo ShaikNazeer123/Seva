@@ -195,7 +195,7 @@ public class MyAddsFragment extends Fragment {
 
                             description = singlePost.get("description");
                             title = singlePost.get("title");
-                            location = singlePost.get("location");
+                            location = singlePost.get("address");
                             expirydate = singlePost.get("date");
                             image = singlePost.get("image");
                             temp.setItemName(name);
@@ -236,7 +236,7 @@ public class MyAddsFragment extends Fragment {
 
                             description = singlePost.get("description");
                             title = singlePost.get("title");
-                            location = singlePost.get("location");
+                            location = singlePost.get("address");
                             expirydate = singlePost.get("date");
                             image = singlePost.get("image");
                             temp.setItemName(name);
@@ -278,7 +278,7 @@ public class MyAddsFragment extends Fragment {
                         if(singlePost.get("uid").equals(uId)) {
                             description = singlePost.get("description");
                             title = singlePost.get("title");
-                            location = singlePost.get("location");
+                            location = singlePost.get("address");
                             expirydate = singlePost.get("date");
                             image = singlePost.get("image");
                             temp.setItemName(name);
@@ -321,7 +321,7 @@ public class MyAddsFragment extends Fragment {
                         if(singlePost.get("uid").equals(uId)) {
                             description = singlePost.get("description");
                             title = singlePost.get("title");
-                            location = singlePost.get("location");
+                            location = singlePost.get("address");
                             expirydate = singlePost.get("date");
                             image = singlePost.get("image");
                             temp.setItemName(name);
