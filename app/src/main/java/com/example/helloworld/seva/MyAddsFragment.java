@@ -57,9 +57,18 @@ public class MyAddsFragment extends Fragment {
     private DatabaseReference mStorage;
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mDatabaseFood;
+    private DatabaseReference mDatabaseUsersFood;
     private DatabaseReference mDatabaseClothes;
+    private DatabaseReference mDatabaseUsersClothes;
     private DatabaseReference mDatabaseBooks;
+    private DatabaseReference mDatabaseUsersBooks;
     private DatabaseReference mDatabaseMisc;
+    private DatabaseReference mDatabaseUsersMisc;
+
+    Map<String,Map<String,String> > foodMap;
+    Map<String,Map<String,String> > clothesMap;
+    Map<String,Map<String,String> > booksMap;
+    Map<String,Map<String,String> > miscMap;
 
     private String name;
     private String phonenumber;
@@ -127,18 +136,20 @@ public class MyAddsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = getContext();
 
-        Log.e("One","yo1");
-
         mAuth = FirebaseAuth.getInstance();
+        uId = mAuth.getCurrentUser().getUid();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseFood = FirebaseDatabase.getInstance().getReference().child("Food");
+        mDatabaseUsersFood = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("food");
         mDatabaseClothes = FirebaseDatabase.getInstance().getReference().child("Clothes");
-        mDatabaseBooks = FirebaseDatabase.getInstance().getReference().child("Books");
+        mDatabaseUsersClothes = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("clothes");
         mDatabaseMisc = FirebaseDatabase.getInstance().getReference().child("Misc");
+        mDatabaseUsersMisc = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("misc");
+        mDatabaseBooks = FirebaseDatabase.getInstance().getReference().child("Books");
+        mDatabaseUsersBooks = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("books");
 
-        uId = mAuth.getCurrentUser().getUid();
         //Log.e("Two","yo2");
 
         getData();
@@ -153,110 +164,10 @@ public class MyAddsFragment extends Fragment {
     public void getData() {
         customListViewValues.clear();
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.hasChild(uId)) {
-                    Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
-                    final Map<String, String> userMap;
-                    userMap = currMap.get(uId);
-
-                    name = userMap.get("name");
-                    phonenumber = userMap.get("contact");
-                    //Log.e("four","yo4");
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         mDatabaseFood.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-
-                //iterate through each Post
-
-                if(currMap != null) {
-
-                    for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
-
-                        //Get user map
-                        Map<String, String> singlePost = (Map<String, String>) entry.getValue();
-                        if(singlePost.get("uid").equals(uId)) {
-                            ListModel temp = new ListModel();
-
-                            description = singlePost.get("description");
-                            title = singlePost.get("title");
-                            location = singlePost.get("address");
-                            expirydate = singlePost.get("date");
-                            image = singlePost.get("image");
-                            temp.setItemName(name);
-                            temp.setItemDescription(description);
-                            temp.setItemPhoneNumber(phonenumber);
-                            temp.setItemLocation(location);
-                            temp.setItemTitle(title);
-                            temp.setItemExpiryDate(expirydate);
-                            temp.setImage(image);
-                            if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
-                            customListViewValues.add(temp);
-                        }
-                    }
-
-                    //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
-
-                    /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
-                    Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mDatabaseBooks.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
-                //iterate through each Post
-                if(currMap != null) {
-                    for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
-                        //Get user map
-                        Map<String, String> singlePost = (Map<String, String>) entry.getValue();
-                        if (singlePost.get("uid").equals(uId)) {
-                            ListModel temp = new ListModel();
-
-                            description = singlePost.get("description");
-                            title = singlePost.get("title");
-                            location = singlePost.get("address");
-                            expirydate = singlePost.get("date");
-                            image = singlePost.get("image");
-                            temp.setItemName(name);
-                            temp.setItemDescription(description);
-                            temp.setItemPhoneNumber(phonenumber);
-                            temp.setItemLocation(location);
-                            temp.setItemTitle(title);
-                            temp.setItemExpiryDate(expirydate);
-                            temp.setImage(image);
-                            if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
-                            customListViewValues.add(temp);
-                        }
-                    }
-
-                    //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
-
-                    /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
-                    Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
-                }
+                foodMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
             }
 
             @Override
@@ -268,31 +179,76 @@ public class MyAddsFragment extends Fragment {
         mDatabaseClothes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
+                clothesMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseBooks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                booksMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseMisc.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                miscMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseUsersFood.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String> currMap = (Map<String, String>) dataSnapshot.getValue();
+
                 //iterate through each Post
+
                 if(currMap != null) {
-                    for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
+
+                    for (Map.Entry entry: currMap.entrySet()) {
 
                         //Get user map
-                        Map<String, String> singlePost = (Map<String, String>) entry.getValue();
-
+                        String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
-                        if(singlePost.get("uid").equals(uId)) {
-                            description = singlePost.get("description");
-                            title = singlePost.get("title");
-                            location = singlePost.get("address");
-                            expirydate = singlePost.get("date");
-                            image = singlePost.get("image");
-                            temp.setItemName(name);
-                            temp.setItemDescription(description);
-                            temp.setItemPhoneNumber(phonenumber);
-                            temp.setItemLocation(location);
-                            temp.setItemTitle(title);
-                            temp.setItemExpiryDate(expirydate);
-                            temp.setImage(image);
-                            if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
-                            customListViewValues.add(temp);
-                        }
+
+                        Map<String,String> singlePost = foodMap.get(postKey);
+
+                        if(singlePost==null) continue;
+
+                        description = singlePost.get("description");
+                        title = singlePost.get("title");
+                        location = singlePost.get("address");
+                        expirydate = singlePost.get("date");
+                        image = singlePost.get("image");
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+                        temp.setItemName(name);
+                        temp.setItemDescription(description);
+                        temp.setItemPhoneNumber(phonenumber);
+                        temp.setItemLocation(location);
+                        temp.setItemTitle(title);
+                        temp.setItemExpiryDate(expirydate);
+                        temp.setImage(image);
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        customListViewValues.add(temp);
+
                     }
 
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
@@ -309,38 +265,47 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseMisc.addValueEventListener(new ValueEventListener() {
+        mDatabaseUsersBooks.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
+                Map<String, String> currMap = (Map<String, String>) dataSnapshot.getValue();
 
                 //iterate through each Post
+
                 if(currMap != null) {
 
-                    for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
+                    for (Map.Entry entry: currMap.entrySet()) {
 
                         //Get user map
-                        Map<String, String> singlePost = (Map<String, String>) entry.getValue();
+                        String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
-                        if(singlePost.get("uid").equals(uId)) {
-                            description = singlePost.get("description");
-                            title = singlePost.get("title");
-                            location = singlePost.get("location");
-                            expirydate = singlePost.get("date");
-                            image = singlePost.get("image");
-                            temp.setItemName(name);
-                            temp.setItemDescription(description);
-                            temp.setItemPhoneNumber(phonenumber);
-                            temp.setItemLocation(location);
-                            temp.setItemTitle(title);
-                            temp.setItemExpiryDate(expirydate);
-                            temp.setImage(image);
-                            if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
-                            customListViewValues.add(temp);
-                        }
 
+                        Map<String,String> singlePost = booksMap.get(postKey);
+
+                        if(singlePost==null) continue;
+
+                        description = singlePost.get("description");
+                        title = singlePost.get("title");
+                        location = singlePost.get("address");
+                        expirydate = singlePost.get("date");
+                        image = singlePost.get("image");
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+                        temp.setItemName(name);
+                        temp.setItemDescription(description);
+                        temp.setItemPhoneNumber(phonenumber);
+                        temp.setItemLocation(location);
+                        temp.setItemTitle(title);
+                        temp.setItemExpiryDate(expirydate);
+                        temp.setImage(image);
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        customListViewValues.add(temp);
                     }
+
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
+
+                    /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
                     Log.e("size",customListViewValues.size()+"");
                     rc.setAdapter(new CustomAdapter(customListViewValues, context));
                 }
@@ -352,7 +317,112 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        rc.setAdapter(new CustomAdapter(customListViewValues, context));
+        mDatabaseUsersClothes.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String> currMap = (Map<String, String>) dataSnapshot.getValue();
+
+                //iterate through each Post
+
+                if(currMap != null) {
+
+                    for (Map.Entry entry: currMap.entrySet()) {
+
+                        //Get user map
+                        String postKey = (String) entry.getKey();
+                        ListModel temp = new ListModel();
+
+                        Map<String,String> singlePost = clothesMap.get(postKey);
+
+                        if(singlePost==null) continue;
+
+                        description = singlePost.get("description");
+                        title = singlePost.get("title");
+                        location = singlePost.get("address");
+                        expirydate = singlePost.get("date");
+                        image = singlePost.get("image");
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+                        temp.setItemName(name);
+                        temp.setItemDescription(description);
+                        temp.setItemPhoneNumber(phonenumber);
+                        temp.setItemLocation(location);
+                        temp.setItemTitle(title);
+                        temp.setItemExpiryDate(expirydate);
+                        temp.setImage(image);
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        customListViewValues.add(temp);
+
+                    }
+
+                    //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
+
+                    /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
+                    Log.e("size",customListViewValues.size()+"");
+                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseUsersMisc.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String> currMap = (Map<String, String>) dataSnapshot.getValue();
+
+                //iterate through each Post
+
+                if(currMap != null) {
+
+                    for (Map.Entry entry: currMap.entrySet()) {
+
+                        //Get user map
+                        String postKey = (String) entry.getKey();
+                        ListModel temp = new ListModel();
+
+                        Map<String,String> singlePost = miscMap.get(postKey);
+
+                        if(singlePost==null) continue;
+
+                        description = singlePost.get("description");
+                        title = singlePost.get("title");
+                        location = singlePost.get("address");
+                        expirydate = singlePost.get("date");
+                        image = singlePost.get("image");
+                        name = singlePost.get("name");
+                        phonenumber = singlePost.get("contact");
+                        temp.setItemName(name);
+                        temp.setItemDescription(description);
+                        temp.setItemPhoneNumber(phonenumber);
+                        temp.setItemLocation(location);
+                        temp.setItemTitle(title);
+                        temp.setItemExpiryDate(expirydate);
+                        temp.setImage(image);
+                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        customListViewValues.add(temp);
+
+                    }
+
+                    //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
+
+                    /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
+                    Log.e("size",customListViewValues.size()+"");
+                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
