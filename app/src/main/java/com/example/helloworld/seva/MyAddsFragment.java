@@ -213,6 +213,8 @@ public class MyAddsFragment extends Fragment {
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
+                    Log.e("size",customListViewValues.size()+"");
+                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
                 }
             }
 
@@ -254,6 +256,8 @@ public class MyAddsFragment extends Fragment {
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
+                    Log.e("size",customListViewValues.size()+"");
+                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
                 }
             }
 
@@ -296,6 +300,8 @@ public class MyAddsFragment extends Fragment {
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
+                    Log.e("size",customListViewValues.size()+"");
+                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
                 }
             }
 
@@ -321,7 +327,7 @@ public class MyAddsFragment extends Fragment {
                         if(singlePost.get("uid").equals(uId)) {
                             description = singlePost.get("description");
                             title = singlePost.get("title");
-                            location = singlePost.get("address");
+                            location = singlePost.get("location");
                             expirydate = singlePost.get("date");
                             image = singlePost.get("image");
                             temp.setItemName(name);
@@ -334,11 +340,11 @@ public class MyAddsFragment extends Fragment {
                             if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
                             customListViewValues.add(temp);
                         }
-                        Log.e("size",customListViewValues.size()+"");
+
                     }
 
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
-
+                    Log.e("size",customListViewValues.size()+"");
                     rc.setAdapter(new CustomAdapter(customListViewValues, context));
                 }
             }

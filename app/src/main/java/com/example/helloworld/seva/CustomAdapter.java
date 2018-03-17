@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,9 +84,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         //Context doubt
         final View v =  LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-
-        return vh;
+        return new ViewHolder(v);
 
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -102,6 +101,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
             holder.t_item_post_date.setText(tempValues.getItemPostDate());
 
+            Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
                 public void onSuccess() {
