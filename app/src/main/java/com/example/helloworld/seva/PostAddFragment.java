@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebHistoryItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -190,7 +192,6 @@ public class PostAddFragment extends Fragment {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent,GALLERY_REQUEST);
-                imageView.setAlpha(1);
             }
         });
 
@@ -271,6 +272,8 @@ public class PostAddFragment extends Fragment {
                 mImageUri = result.getUri();
                 imageView.setImageURI(mImageUri);
                 myImageViewText.setVisibility(View.GONE);
+                imageView.setAlpha((float)1.0);
+                imageView.setBackgroundColor(Color.WHITE);
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
