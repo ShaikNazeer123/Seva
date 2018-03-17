@@ -139,7 +139,7 @@ public class MyAddsFragment extends Fragment {
         mDatabaseMisc = FirebaseDatabase.getInstance().getReference().child("Misc");
 
         uId = mAuth.getCurrentUser().getUid();
-        Log.e("Two","yo2");
+        //Log.e("Two","yo2");
 
         getData();
 
@@ -153,7 +153,7 @@ public class MyAddsFragment extends Fragment {
     public void getData() {
         customListViewValues.clear();
 
-        mDatabaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -165,7 +165,7 @@ public class MyAddsFragment extends Fragment {
 
                     name = userMap.get("name");
                     phonenumber = userMap.get("contact");
-                    Log.e("four","yo4");
+                    //Log.e("four","yo4");
                 }
             }
             @Override
@@ -174,7 +174,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseFood.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseFood.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -184,8 +184,6 @@ public class MyAddsFragment extends Fragment {
 
                 if(currMap != null) {
 
-
-                    Log.e("six","yo6");
                     for (Map.Entry<String, Map<String, String>> entry : currMap.entrySet()) {
 
                         //Get user map
@@ -224,7 +222,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseBooks.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseBooks.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
@@ -267,7 +265,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseClothes.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseClothes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
@@ -311,7 +309,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
-        mDatabaseMisc.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseMisc.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
@@ -342,7 +340,6 @@ public class MyAddsFragment extends Fragment {
                         }
 
                     }
-
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
                     Log.e("size",customListViewValues.size()+"");
                     rc.setAdapter(new CustomAdapter(customListViewValues, context));
@@ -355,6 +352,7 @@ public class MyAddsFragment extends Fragment {
             }
         });
 
+        rc.setAdapter(new CustomAdapter(customListViewValues, context));
     }
 
 

@@ -93,7 +93,6 @@ public class PostAddFragment extends Fragment {
     Calendar myCalendar;
     ImageView imageView;
 
-
     int btn;
 
     View mView;

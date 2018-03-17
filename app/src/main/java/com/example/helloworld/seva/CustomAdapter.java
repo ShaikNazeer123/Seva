@@ -33,7 +33,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
     private ArrayList data;
-    ListModel tempValues=null;
     Context context;
 
     public CustomAdapter(ArrayList d,Context ct) {
@@ -79,6 +78,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
     }
 
+
+
     @Override
     public CustomAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
@@ -90,8 +91,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        tempValues = null;
-        tempValues = (ListModel) data.get(position);
+        final ListModel tempValues = (ListModel) data.get(position);
         if(tempValues != null) {
             holder.t_name.setText(tempValues.getItemName());
             holder.t_title.setText(tempValues.getItemTitle());
@@ -116,6 +116,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
             //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
+
 
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
             @Override
