@@ -24,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -189,6 +190,7 @@ public class PostAddFragment extends Fragment {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent,GALLERY_REQUEST);
+                imageView.setAlpha(1);
             }
         });
 
@@ -217,9 +219,12 @@ public class PostAddFragment extends Fragment {
         datebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(getActivity()!=null)
                 new DatePickerDialog(getActivity(), date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                else
+                    Toast.makeText(getContext(),"get context returned null in postAddFragment",Toast.LENGTH_SHORT).show();
             }
         });
 
