@@ -112,11 +112,11 @@ public class FoodFragment extends Fragment {
     }
 
     public void getData() {
-        customListViewValues.clear();
 
         mDatabaseFood.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                customListViewValues.clear();
                 Map<String, Map<String, String>> currMap = (Map<String, Map<String, String>>) dataSnapshot.getValue();
 
                 //iterate through each Post
