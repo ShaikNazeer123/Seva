@@ -304,7 +304,9 @@ public class EditProfileActivity extends AppCompatActivity{
             if(TextUtils.isEmpty(dob)){
                 dobField.setError("DOB Can't be empty");
             }
-
+            if(mImageUri==null){
+                Toast.makeText(this,"Please add image",Toast.LENGTH_SHORT).show();
+            }
             mProgress.dismiss();
 
 

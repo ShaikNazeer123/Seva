@@ -271,7 +271,25 @@ public class EditActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(this,"Any field should not be empty",Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(addTitle.getText().toString().trim())){
+                addTitle.setError("Title can't be empty");
+                //flag=false;
+            }
+            if(TextUtils.isEmpty(addDescription.getText().toString().trim())){
+                addDescription.setError("Description can't be empty");
+                //flag=false;
+            }
+            if(TextUtils.isEmpty(addAddress.getText().toString().trim())){
+                addAddress.setError("Address can't be empty");
+                //flag=false;
+            }
+            if(TextUtils.isEmpty(addDate.getText().toString().trim())){
+                addDate.setError("Date can't be empty");
+                //flag=false;
+            }
+            if(imageUrl==null){
+                Toast.makeText(this,"Please add image",Toast.LENGTH_SHORT).show();
+            }
             mProgress.dismiss();
         }
     }
