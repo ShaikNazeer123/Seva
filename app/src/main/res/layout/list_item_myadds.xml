@@ -1,25 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools">
+    xmlns:card_view="http://schemas.android.com/tools"
+    >
+
     <android.support.v7.widget.CardView
+        card_view:cardElevation="8dp"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        card_view:cardBackgroundColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#0277BD">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/postImage"
-                android:layout_width="match_parent"
-                android:layout_height="160sp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/food"/>
+                <ImageView
+                    android:id="@+id/postImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="140sp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/osho_ico_round"/>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -27,14 +35,14 @@
                     android:gravity="right"
                     android:layout_gravity="right"
                     >
-                     <ImageView
-                         android:id="@+id/edit"
+                    <ImageView
+                        android:id="@+id/edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_edit"
                         android:background="@color/grey_100"
                         android:layout_gravity="right"
-                         android:padding="2dp"/>
+                        android:padding="2dp"/>
                     <ImageView
                         android:id="@+id/delete"
                         android:layout_width="wrap_content"
@@ -45,53 +53,56 @@
                         android:padding="2dp"/>
                 </LinearLayout>
             </FrameLayout>
-            <LinearLayout
+
+
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:gravity="center"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="7dp">
+                android:layout_marginTop="7dp"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:weightSum="10">
+                -->
+
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:maxLines="1"
+                android:gravity="center"
+                android:text="Title Here"
+                android:textColor="#E1F5FE"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/item_title"
-                    android:layout_weight="5.45"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Title Here"
                     android:maxLines="1"
-                    android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:text="By: "
+                    android:textSize="18sp"
+                    android:textColor="#E1F5FE" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="4.55"
-                    android:gravity="right"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="By:"
-                        android:maxLines="1"
-                        android:textColor="#000"
-
-                        />
-                    <TextView
-                        android:id="@+id/item_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Shaik Nazeer "
-                        android:maxLines="1"
-                        android:textColor="#000"
-                        />
-                </LinearLayout>
-
+                    android:maxLines="1"
+                    android:textSize="18sp"
+                    android:text="Shaik Nazeer"
+                    android:textColor="#E1F5FE" />
             </LinearLayout>
+
 
 
             <TextView
@@ -100,10 +111,12 @@
                 android:layout_height="wrap_content"
                 android:text="Food description goes here in 2 lines
 line2"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="3dp"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:maxLines="2"
-                android:textColor="#555"
+                android:textColor="#E1F5FE"
+                android:textSize="15sp"
                 />
 
 
@@ -112,35 +125,36 @@ line2"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10"
-                android:layout_marginStart="3dp">
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="8dp"
+                >
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="left"
+                    android:gravity="center"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Created:"
                         android:textSize="15sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="#E1F5FE"/>
                     <TextView
                         android:id="@+id/item_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="@color/black"
+                        android:textColor="#E1F5FE"
                         android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="right"
-
+                    android:gravity="center"
                     >
 
                     <TextView
@@ -148,57 +162,66 @@ line2"
                         android:layout_height="wrap_content"
                         android:text="Expiry:"
                         android:textSize="15sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="#E1F5FE"/>
                     <TextView
                         android:id="@+id/item_expiry_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="@color/black"
+                        android:textColor="#E1F5FE"
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:gravity=""
+                android:layout_marginBottom="2dp"
                 android:weightSum="12"
                 >
                 <ImageButton
                     android:id="@+id/like"
                     android:layout_weight="4"
-                    android:background="@color/white"
+                    android:background="#0277BD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_like_g"
+                    android:src="@mipmap/like"
                     android:theme="@style/PrimaryFlatButton"
                     android:tag="0"
                     />
+                <View
+                    android:layout_width="0.5dp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"/>
+
                 <ImageButton
                     android:id="@+id/call"
-                    android:layout_weight="4"
-                    android:background="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:adjustViewBounds="false"
+                    android:background="#0277BD"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_phone"
-                    android:theme="@style/PrimaryFlatButton"
-                    />
+                    android:src="@mipmap/oshocaller" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"/>
 
                 <ImageButton
                     android:id="@+id/location"
                     android:layout_weight="4"
-                    android:background="@color/white"
+                    android:background="#0277BD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_contact_round"
+                    android:src="@mipmap/osho_location"
                     android:theme="@style/PrimaryFlatButton"
                     />
                 <TextView
@@ -213,8 +236,6 @@ line2"
                     android:text="phone reference"
                     android:id="@+id/item_location"
                     android:visibility="invisible"/>
-
-
 
             </LinearLayout>
 

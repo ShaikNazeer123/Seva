@@ -140,11 +140,11 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             });
 
             if(tempValues.getLikeStatus() == true){
-                holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
+                holder.t_like_image.setImageResource(R.mipmap.ic_red);
                 holder.t_like_image.setTag("1");
             }
             else{
-                holder.t_like_image.setImageResource(R.mipmap.ic_like);
+                holder.t_like_image.setImageResource(R.mipmap.like);
                 holder.t_like_image.setTag("0");
             }
 
@@ -176,13 +176,13 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             public void onClick(View view) {
                 if(holder.t_like_image.getTag().equals("0")){
                     //state unlike --> like
-                    holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
+                    holder.t_like_image.setImageResource(R.mipmap.ic_red);
                     holder.t_like_image.setTag("1");
                     mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue("true");
                     mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue("true");
                 }
                 else{
-                    holder.t_like_image.setImageResource(R.mipmap.ic_like_g);
+                    holder.t_like_image.setImageResource(R.mipmap.like);
                     holder.t_like_image.setTag("0");
                     mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue(null);
                     mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue(null);
