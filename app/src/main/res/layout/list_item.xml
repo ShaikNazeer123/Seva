@@ -3,7 +3,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools">
-    <android.support.v7.widget.CardView
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
@@ -11,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/gr">
+            android:background="#0277BD">
 
             <ImageView
                 android:id="@+id/postImage"
@@ -31,18 +33,18 @@
                 <TextView
                     android:id="@+id/item_title"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="1dp"
                     android:layout_weight="5.45"
                     android:maxLines="1"
                     android:text="Title Here"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textColor="#E1F5FE"
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="34dp"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="4.55"
                     android:gravity="right"
@@ -54,19 +56,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
-                        android:text="Added by:"
-                        android:textColor="#000000"
-
+                        android:text="By:"
+                        android:textColor="#E1F5FE"
                         />
 
                     <TextView
                         android:id="@+id/item_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:maxLines="1"
-                        android:text="Shaik Nazeer "
-                        android:textColor="#000000" />
+                        android:text="Shaik Nazeer"
+                        android:textColor="#E1F5FE" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -81,7 +81,7 @@ line2"
                 android:layout_marginBottom="7dp"
                 android:layout_marginStart="3dp"
                 android:maxLines="2"
-                android:textColor="#000000"
+                android:textColor="#E1F5FE"
                 android:textSize="15sp"
                 />
 
@@ -104,15 +104,15 @@ line2"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Posted on: "
+                        android:text="Created:"
                         android:textSize="15sp"
-                        android:textColor="#000000"/>
+                        android:textColor="#E1F5FE"/>
                     <TextView
                         android:id="@+id/item_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="#000000"
+                        android:textColor="#E1F5FE"
                         android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -126,15 +126,15 @@ line2"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expire by: "
+                        android:text="Expiry:"
                         android:textSize="15sp"
-                        android:textColor="#000000"/>
+                        android:textColor="#E1F5FE"/>
                     <TextView
                         android:id="@+id/item_expiry_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="#000000"
+                        android:textColor="#E1F5FE"
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -149,36 +149,34 @@ line2"
                 <ImageButton
                     android:id="@+id/like"
                     android:layout_weight="4"
-                    android:background="@color/white"
+                    android:background="#0277BD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_like"
+                    android:src="@mipmap/like"
                     android:theme="@style/PrimaryFlatButton"
-                    android:tag="0"
                     />
                 <ImageButton
                     android:id="@+id/call"
                     android:layout_weight="4"
-                    android:background="@color/white"
+                    android:background="#0277BD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_phone"
-                    android:theme="@style/PrimaryFlatButton"
+                    android:src="@mipmap/oshocaller"
                     />
 
                 <ImageButton
                     android:id="@+id/location"
                     android:layout_weight="4"
-                    android:background="@color/white"
+                    android:background="#0277BD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_contact_round"
+                    android:src="@mipmap/osho_location"
                     android:theme="@style/PrimaryFlatButton"
                     />
                 <TextView
@@ -193,8 +191,6 @@ line2"
                     android:text="phone reference"
                     android:id="@+id/item_location"
                     android:visibility="invisible"/>
-
-
 
             </LinearLayout>
 

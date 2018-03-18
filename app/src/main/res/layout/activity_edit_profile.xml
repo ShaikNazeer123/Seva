@@ -41,7 +41,7 @@
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/tushar"
+            android:src="@mipmap/add_image"
             android:background="@android:color/transparent"
             />
 
@@ -118,7 +118,7 @@
             android:background="#fff"
             android:elevation="4dp"
             android:orientation="vertical"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:paddingRight="5dp"
             android:paddingLeft="5dp"
             >
@@ -244,7 +244,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/dob_field"
-                android:gravity="center">
+                android:gravity="center"
+                >
 
                 <TextView
                     android:layout_width="0dp"
@@ -277,14 +278,15 @@
             </LinearLayout>
 
             <Button
-                android:layout_marginTop="30dp"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:layout_marginTop="10dp"
                 android:id="@+id/saveBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Save" />
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="Save"
+
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
         </LinearLayout>
     </RelativeLayout>
     </FrameLayout>
