@@ -233,6 +233,9 @@ public class MyAddsFragment extends Fragment {
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
                         Map<String, Object> singlePost = (Map<String, Object>) foodMap.get(postKey);
+
+                        if(singlePost == null) continue;
+
                         Boolean isLiked = false;
 
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
@@ -340,6 +343,9 @@ public class MyAddsFragment extends Fragment {
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
                         Map<String, Object> singlePost = (Map<String, Object>) booksMap.get(postKey);
+
+                        if(singlePost == null) continue;
+
                         Boolean isLiked = false;
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
@@ -445,6 +451,7 @@ public class MyAddsFragment extends Fragment {
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
                         Map<String, Object> singlePost = (Map<String, Object>) clothesMap.get(postKey);
+                        if(singlePost == null) continue;
                         Boolean isLiked = false;
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
@@ -551,6 +558,7 @@ public class MyAddsFragment extends Fragment {
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
                         Map<String, Object> singlePost = (Map<String, Object>) miscMap.get(postKey);
+                        if(singlePost == null) continue;
                         Boolean isLiked = false;
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 

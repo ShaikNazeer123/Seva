@@ -127,6 +127,7 @@ public class ClothesFragment extends Fragment {
 
                         ListModel temp = new ListModel();
                         Map<String, Object> singlePost = (Map<String, Object>) entry.getValue();
+                        if(singlePost == null) continue;
                         Boolean isLiked = false;
                         String postKey = entry.getKey();
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
