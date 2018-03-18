@@ -8,11 +8,15 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -37,6 +43,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
     private ArrayList data;
     Context context;
     public DatabaseReference mDatabase;
+
 
     public CustomAdapterMyAdds(ArrayList d,Context ct) {
         data = d;
@@ -118,6 +125,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             holder.categoryType = tempValues.getCategoryType();
             holder.uId = tempValues.getuId();
 
+
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
                 public void onSuccess() {
@@ -190,10 +198,44 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             }
         });
 
+
+
         holder.t_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
+                LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.popup_window,null);
+
+                final PopupWindow popupWindow;
+                LinearLayout linearLayout1;
+                TextView closePopupBtn;
+                TextView deleteBtn;
+
+                closePopupBtn = (TextView) customView.findViewById(R.id.cancel);
+                deleteBtn = (TextView) customView.findViewById(R.id.delete);
+
+                //instantiate popup window
+                popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                //display the popup window
+                popupWindow.showAsDropDown(view);
+
+                //close the popup window on button click
+                closePopupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //dismiss delete
+                        popupWindow.dismiss();
+                    }
+                });
+
+                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //delete method here
+                    }
+                });
+                //Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
             }
         });
     }
