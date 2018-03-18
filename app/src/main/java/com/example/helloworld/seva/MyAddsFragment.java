@@ -65,10 +65,10 @@ public class MyAddsFragment extends Fragment {
     private DatabaseReference mDatabaseMisc;
     private DatabaseReference mDatabaseUsersMisc;
 
-    Map<String,Map<String,String> > foodMap;
-    Map<String,Map<String,String> > clothesMap;
-    Map<String,Map<String,String> > booksMap;
-    Map<String,Map<String,String> > miscMap;
+    Map<String,Map<String,Object> > foodMap;
+    Map<String,Map<String,Object> > clothesMap;
+    Map<String,Map<String,Object> > booksMap;
+    Map<String,Map<String,Object> > miscMap;
 
     private String name;
     private String phonenumber;
@@ -79,6 +79,9 @@ public class MyAddsFragment extends Fragment {
     private String image;
 
     private String uId;
+
+    private String postUID;
+    private String imageUri;
 
     public MyAddsFragment() {
         // Required empty public constructor
