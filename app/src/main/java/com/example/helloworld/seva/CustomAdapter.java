@@ -124,7 +124,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 public void onSuccess() {
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
                 }
-
                 @Override
                 public void onError() {
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
