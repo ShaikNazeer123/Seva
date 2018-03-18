@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/header_cover_image"
-            android:background="#ebca0707"
+            android:background="#0091EA"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
@@ -83,11 +83,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:textColor="#fff"
+                    android:textColor="#E1F5FE"
                     android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:gravity="center"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:hint="Name"
+                    android:backgroundTint="@android:color/white"
+                    android:textColorHint="#E1F5FE" />
 
                 <EditText
                     android:id="@+id/edit_contact"
@@ -98,6 +101,10 @@
                     android:textSize="20sp"
                     android:gravity="center"
                     android:maxLines="1"
+                    android:textStyle="normal"
+                    android:hint="Contact number"
+                    android:backgroundTint="@android:color/white"
+                    android:textColorHint="#E1F5FE"
                     />
             </LinearLayout>
 
@@ -131,10 +138,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Organization: "
-                    android:textStyle="bold"
+                    android:text="ORGANISATION"
+                    android:textStyle="normal"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="#0091EA"
                     />
 
                 <android.support.design.widget.TextInputLayout
@@ -147,8 +154,8 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_organization"
                         android:layout_height="wrap_content"
-                        android:hint="organization name"
-                        android:textSize="20sp"
+                        android:hint="Enter organisation name"
+                        android:textSize="17sp"
                         android:maxLines="1"
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -169,10 +176,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Address: "
-                    android:textStyle="bold"
+                    android:text="ADDRESS"
+                    android:textStyle="normal"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="#0091EA"
                     />
 
                 <android.support.design.widget.TextInputLayout
@@ -184,9 +191,9 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_address"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:maxLines="1"
-                        android:hint="address"
+                        android:hint="Enter location"
                         />
                 </android.support.design.widget.TextInputLayout>
 
@@ -206,10 +213,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Gender: "
-                    android:textStyle="bold"
+                    android:text="GENDER"
+                    android:textStyle="normal"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="#0091EA"
                     />
 
                 <android.support.design.widget.TextInputLayout
@@ -221,8 +228,8 @@
                         android:layout_width="match_parent"
                         android:id="@+id/edit_gender"
                         android:layout_height="wrap_content"
-                        android:hint="gender"
-                        android:textSize="20sp"
+                        android:hint="Enter male/female/other"
+                        android:textSize="17sp"
                         android:maxLines="1"
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -243,10 +250,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Date of Birth: "
-                    android:textStyle="bold"
+                    android:text="DATE OF BIRTH"
+                    android:textStyle="normal"
                     android:textSize="20sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="#0091EA"/>
 
                 <TextView
                     android:id="@+id/dob"

@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/header_cover_image"
-            android:background="#ebca0707"
+            android:background="#FB8C00"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
@@ -148,8 +148,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Organization: "
-                    android:textStyle="bold"
+                    android:text="Organization:"
+                    android:fontFamily="Roboto regular"
+                    android:textStyle="normal"
                     android:textSize="20sp"
                     />
 
@@ -158,8 +159,10 @@
                     android:id="@+id/main_organization"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:fontFamily="Roboto regular"
                     android:text="ABC Ngo"
                     android:textSize="20sp"
+                    android:textStyle="normal"
                     />
 
                 <EditView
@@ -168,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:text="ABC Ngo"
+                    android:fontFamily="Roboto regular"
                     android:textSize="20sp"
                     android:visibility="gone"
                     />
@@ -187,8 +191,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:text="Address: "
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:textSize="20sp"
+                    android:fontFamily="Roboto regular"
                     />
 
                 <TextView
@@ -198,6 +203,7 @@
                     android:layout_weight="6"
                     android:text="H.No. 895 Gurgaon"
                     android:textSize="20sp"
+                    android:fontFamily="Roboto regular"
                     />
 
                 <EditView
@@ -208,6 +214,7 @@
                     android:text="H.No. 895 Gurgaon"
                     android:textSize="20sp"
                     android:visibility="gone"
+                    android:fontFamily="Roboto regular"
                     />
             </LinearLayout>
 
@@ -225,8 +232,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:text="Gender: "
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:textSize="20sp"
+                    android:fontFamily="Roboto regular"
                     />
 
                 <TextView
@@ -235,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:text="Male"
+                    android:fontFamily="Roboto regular"
                     android:textSize="20sp"
                     />
 
@@ -244,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:text="Male"
+                    android:fontFamily="Roboto regular"
                     android:textSize="20sp"
                     android:visibility="gone"
                     />
@@ -264,7 +274,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:text="Date of Birth: "
-                    android:textStyle="bold"
+                    android:textStyle="normal"
+                    android:fontFamily="Roboto regular"
                     android:textSize="20sp"
                     />
 
@@ -274,6 +285,7 @@
                     android:layout_height="wrap_content"
                     android:text="28/03/1997"
                     android:textSize="20sp"
+                    android:fontFamily="Roboto regular"
                     />
 
                 <DatePicker

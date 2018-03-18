@@ -40,7 +40,7 @@
         android:layout_alignBottom="@+id/addimage"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Add Image"
+        android:text="Add image"
         android:textSize="30sp"
         android:textColor="@color/black" />
 </RelativeLayout>
@@ -65,7 +65,9 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:hint="Title"
-            android:textColorHint="@color/black"
+
+            android:backgroundTint="#80D8FF"
+            android:textColorHint="#757575"
             android:textColor="@color/black"
             android:paddingTop="16dp"
             android:paddingBottom="8dp"/>
@@ -84,7 +86,8 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:hint="Description"
-            android:textColorHint="@color/black"
+            android:textColorHint="#757575"
+            android:backgroundTint="#80D8FF"
             android:textColor="@color/black"
             android:paddingTop="16dp"
             android:paddingBottom="8dp"/>
@@ -103,7 +106,8 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:hint="Address"
-            android:textColorHint="@color/black"
+            android:textColorHint="#757575"
+            android:backgroundTint="#80D8FF"
             android:textColor="@color/black"
             android:paddingTop="16dp"
             android:paddingBottom="8dp"/>
@@ -131,8 +135,9 @@
                 android:inputType="none"
                 android:hint="Expiry date"
                 android:text="faldskfjdsal"
+                android:textColorHint="#757575"
+                android:backgroundTint="#80D8FF"
                 android:editable="false"
-                android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"/>
@@ -148,6 +153,7 @@
                 android:maxLines="1"
                 />
         </LinearLayout>
+
         <RadioGroup
             android:id="@+id/radiogroup"
             android:paddingTop="16dp"
@@ -161,7 +167,7 @@
                 android:id="@+id/foodOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:checked="true"
                 android:text="Food"
                 android:layout_weight="1"/>
             <RadioButton

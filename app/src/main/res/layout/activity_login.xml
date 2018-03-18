@@ -50,7 +50,7 @@
             style="@style/ThemeOverlay.MyTextDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apki seva mein hazir"
+            android:text="Apki seva mein hazir!"
             android:textColor="@color/white"
             android:textSize="20sp"/>
         </LinearLayout>
@@ -62,6 +62,7 @@
             android:textColor="@color/white"
             android:text="You are not logged in !"
             android:layout_weight="2"/>
+
         <RelativeLayout
             android:layout_weight="2"
             android:layout_width="match_parent"
@@ -73,7 +74,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
-                tools:text="Verification Successful"
+                tools:text="Verification successful!"
                 android:textColor="@color/white"/>
 
             <ProgressBar
@@ -124,8 +125,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:hint="User name"
-                        android:textColorHint="@color/black"
+                        android:hint="Login/Sign-up Name"
+                        android:textColorHint="#9E9E9E"
                         android:textColor="@color/black"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -140,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:hint="Verification code"
-                        android:textColorHint="@color/black"
+                        android:textColorHint="#9E9E9E"
                         android:textColor="@color/black"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -150,6 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:weightSum="3.0">
 
                 <Button

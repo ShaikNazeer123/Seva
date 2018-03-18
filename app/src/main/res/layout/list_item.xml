@@ -10,56 +10,63 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/gr">
 
             <ImageView
                 android:id="@+id/postImage"
                 android:layout_width="match_parent"
                 android:layout_height="160sp"
                 android:scaleType="centerCrop"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:gravity="center"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="7dp">
+                android:layout_marginTop="7dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
                 <TextView
                     android:id="@+id/item_title"
-                    android:layout_weight="5.45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Title Here"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="5.45"
                     android:maxLines="1"
-                    android:textColor="#000"
+                    android:text="Title Here"
+                    android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="4.55"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Added by : "
                         android:maxLines="1"
-                        android:textColor="#000"
+                        android:text="Added by:"
+                        android:textColor="#000000"
 
                         />
+
                     <TextView
                         android:id="@+id/item_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="Shaik Nazeer "
                         android:maxLines="1"
-                        android:textColor="#000"
-                        />
+                        android:text="Shaik Nazeer "
+                        android:textColor="#000000" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -70,10 +77,12 @@
                 android:layout_height="wrap_content"
                 android:text="Food description goes here in 2 lines
 line2"
+                android:layout_marginLeft="1dp"
                 android:layout_marginBottom="7dp"
                 android:layout_marginStart="3dp"
                 android:maxLines="2"
-                android:textColor="#555"
+                android:textColor="#000000"
+                android:textSize="15sp"
                 />
 
 
@@ -82,7 +91,9 @@ line2"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10"
-                android:layout_marginStart="3dp">
+                android:layout_marginStart="3dp"
+                android:layout_marginBottom="5dp"
+                >
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="5"
@@ -95,38 +106,37 @@ line2"
                         android:layout_height="wrap_content"
                         android:text="Posted on: "
                         android:textSize="15sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="#000000"/>
                     <TextView
                         android:id="@+id/item_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
                     android:layout_height="wrap_content"
-                    android:text="Expire by: "
-                    android:textSize="15sp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/item_expiry_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20-12-2017"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"/>
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:gravity="right"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expire by: "
+                        android:textSize="15sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:id="@+id/item_expiry_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20-12-2017"
+                        android:textColor="#000000"
+                        android:textSize="15dp"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -144,8 +154,9 @@ line2"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_launcher_foreground"
+                    android:src="@mipmap/ic_like"
                     android:theme="@style/PrimaryFlatButton"
+                    android:tag="0"
                     />
                 <ImageButton
                     android:id="@+id/call"
