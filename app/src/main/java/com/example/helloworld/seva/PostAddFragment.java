@@ -456,6 +456,7 @@ public class PostAddFragment extends Fragment {
 
         }
         else{
+            mProgress.dismiss();
             if(mImageUri==null){
                 Toast.makeText(getContext(),"Please add image",Toast.LENGTH_SHORT).show();
             }
