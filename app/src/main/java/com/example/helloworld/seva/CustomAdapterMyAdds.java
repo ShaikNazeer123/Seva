@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.example.helloworld.seva.ListModel;
 import com.example.helloworld.seva.MainActivity;
 import com.example.helloworld.seva.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -34,10 +36,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdds.ViewHolder>{
     private ArrayList data;
     Context context;
+    public DatabaseReference mDatabase;
 
     public CustomAdapterMyAdds(ArrayList d,Context ct) {
         data = d;
         context=ct;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
     public ArrayList getData() {
         return data;
@@ -65,6 +69,11 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         public ImageView t_edit;
         public ImageView t_delete;
 
+        public String uId;
+        public String postId;
+        public String categoryType;
+
+        public Boolean isLiked;
 
         public ViewHolder(View v){
             super(v);
@@ -105,6 +114,9 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             holder.t_location.setText(tempValues.getItemLocation());
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
             holder.t_item_post_date.setText(tempValues.getItemPostDate());
+            holder.postId = tempValues.getPostId();
+            holder.categoryType = tempValues.getCategoryType();
+            holder.uId = tempValues.getuId();
 
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
@@ -117,6 +129,15 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
                 }
             });
+
+            if(tempValues.getLikeStatus() == true){
+                holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
+                holder.t_like_image.setTag("1");
+            }
+            else{
+                holder.t_like_image.setImageResource(R.mipmap.ic_like);
+                holder.t_like_image.setTag("0");
+            }
 
             //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
@@ -148,10 +169,14 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                     //state unlike --> like
                     holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
                     holder.t_like_image.setTag("1");
+                    mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue("true");
+                    mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue("true");
                 }
                 else{
                     holder.t_like_image.setImageResource(R.mipmap.ic_like_g);
                     holder.t_like_image.setTag("0");
+                    mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue(null);
+                    mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue(null);
                 }
             }
         });

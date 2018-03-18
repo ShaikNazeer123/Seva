@@ -65,10 +65,10 @@ public class MyAddsFragment extends Fragment {
     private DatabaseReference mDatabaseMisc;
     private DatabaseReference mDatabaseUsersMisc;
 
-    Map<String,Map<String,String> > foodMap;
-    Map<String,Map<String,String> > clothesMap;
-    Map<String,Map<String,String> > booksMap;
-    Map<String,Map<String,String> > miscMap;
+    Map<String,Map<String,Object> > foodMap;
+    Map<String,Map<String,Object> > clothesMap;
+    Map<String,Map<String,Object> > booksMap;
+    Map<String,Map<String,Object> > miscMap;
 
     private String name;
     private String phonenumber;
@@ -79,6 +79,8 @@ public class MyAddsFragment extends Fragment {
     private String image;
 
     private String uId;
+
+    private String postDate;
 
     private String postUID;
     private String imageUri;
@@ -170,7 +172,7 @@ public class MyAddsFragment extends Fragment {
         mDatabaseFood.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                foodMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+                foodMap = (Map<String, Map<String, Object> >) dataSnapshot.getValue();
             }
 
             @Override
@@ -182,7 +184,7 @@ public class MyAddsFragment extends Fragment {
         mDatabaseClothes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                clothesMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+                clothesMap = (Map<String, Map<String, Object> >) dataSnapshot.getValue();
             }
 
             @Override
@@ -194,7 +196,7 @@ public class MyAddsFragment extends Fragment {
         mDatabaseBooks.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                booksMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+                booksMap = (Map<String, Map<String, Object> >) dataSnapshot.getValue();
             }
 
             @Override
@@ -206,7 +208,7 @@ public class MyAddsFragment extends Fragment {
         mDatabaseMisc.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                miscMap = (Map<String, Map<String, String> >) dataSnapshot.getValue();
+                miscMap = (Map<String, Map<String, Object> >) dataSnapshot.getValue();
             }
 
             @Override
@@ -230,18 +232,60 @@ public class MyAddsFragment extends Fragment {
                         //Get user map
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
+                        Map<String, Object> singlePost = (Map<String, Object>) foodMap.get(postKey);
+                        Boolean isLiked = false;
 
-                        Map<String,String> singlePost = foodMap.get(postKey);
+                        for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
-                        if(singlePost==null) continue;
+                            String fieldKey = entry11.getKey();
 
-                        description = singlePost.get("description");
-                        title = singlePost.get("title");
-                        location = singlePost.get("address");
-                        expirydate = singlePost.get("date");
-                        image = singlePost.get("image");
-                        name = singlePost.get("name");
-                        phonenumber = singlePost.get("contact");
+                            //Log.e("Yups",fieldKey);
+
+                            if(fieldKey.equals("interested")){
+//                                Log.e("Bro","interested");
+                                Map<String,String> fieldValue = (Map<String,String>) entry11.getValue();
+
+                                if(fieldValue.get(uId) != null){
+                                    isLiked = true;
+                                }
+                            }
+                            else{
+//                                Log.e("done",fieldKey);
+
+                                String fieldValue = (String)entry11.getValue();
+                                if(fieldKey.equals("description")) {
+                                    description = fieldValue;
+                                }
+                                if(fieldKey.equals("title")) {
+                                    title = fieldValue;
+                                }
+                                if(fieldKey.equals("address")) {
+                                    location = fieldValue;
+                                }
+                                if(fieldKey.equals("date")) {
+                                    expirydate = fieldValue;
+                                }
+                                if(fieldKey.equals("image")) {
+                                    image = fieldValue;
+                                }
+                                if(fieldKey.equals("uid")) {
+                                    postUID = fieldValue;
+                                }
+                                if(fieldKey.equals("name")) {
+                                    name = fieldValue;
+                                }
+                                if(fieldKey.equals("contact")) {
+                                    phonenumber = fieldValue;
+                                }
+                                if(fieldKey.equals("postdate")) {
+                                    postDate = fieldValue;
+                                }
+                                if(fieldKey.equals("imageUri")) {
+                                    imageUri = fieldValue;
+                                }
+                            }
+                        }
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
@@ -249,7 +293,19 @@ public class MyAddsFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
-                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        temp.setItemPostDate(postDate);
+                        temp.setCategoryType("Food");
+                        temp.setPostId(postKey);
+                        temp.setuId(uId);
+
+                        if(imageUri!=null) temp.setmImageUri(Uri.parse(imageUri));
+
+                        if(isLiked == true){
+                            temp.setIsLiked();
+                        }
+                        else{
+                            temp.resetisLiked();
+                        }
                         customListViewValues.add(temp);
 
                     }
@@ -283,18 +339,59 @@ public class MyAddsFragment extends Fragment {
                         //Get user map
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
+                        Map<String, Object> singlePost = (Map<String, Object>) booksMap.get(postKey);
+                        Boolean isLiked = false;
+                        for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
-                        Map<String,String> singlePost = booksMap.get(postKey);
+                            String fieldKey = entry11.getKey();
 
-                        if(singlePost==null) continue;
+                            //Log.e("Yups",fieldKey);
 
-                        description = singlePost.get("description");
-                        title = singlePost.get("title");
-                        location = singlePost.get("address");
-                        expirydate = singlePost.get("date");
-                        image = singlePost.get("image");
-                        name = singlePost.get("name");
-                        phonenumber = singlePost.get("contact");
+                            if(fieldKey.equals("interested")){
+//                                Log.e("Bro","interested");
+                                Map<String,String> fieldValue = (Map<String,String>) entry11.getValue();
+
+                                if(fieldValue.get(uId) != null){
+                                    isLiked = true;
+                                }
+                            }
+                            else{
+//                                Log.e("done",fieldKey);
+
+                                String fieldValue = (String)entry11.getValue();
+                                if(fieldKey.equals("description")) {
+                                    description = fieldValue;
+                                }
+                                if(fieldKey.equals("title")) {
+                                    title = fieldValue;
+                                }
+                                if(fieldKey.equals("address")) {
+                                    location = fieldValue;
+                                }
+                                if(fieldKey.equals("date")) {
+                                    expirydate = fieldValue;
+                                }
+                                if(fieldKey.equals("image")) {
+                                    image = fieldValue;
+                                }
+                                if(fieldKey.equals("uid")) {
+                                    postUID = fieldValue;
+                                }
+                                if(fieldKey.equals("name")) {
+                                    name = fieldValue;
+                                }
+                                if(fieldKey.equals("contact")) {
+                                    phonenumber = fieldValue;
+                                }
+                                if(fieldKey.equals("postdate")) {
+                                    postDate = fieldValue;
+                                }
+                                if(fieldKey.equals("imageUri")) {
+                                    imageUri = fieldValue;
+                                }
+                            }
+                        }
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
@@ -302,7 +399,19 @@ public class MyAddsFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
-                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        temp.setItemPostDate(postDate);
+                        temp.setCategoryType("Books");
+                        temp.setPostId(postKey);
+                        temp.setuId(uId);
+
+                        if(imageUri!=null) temp.setmImageUri(Uri.parse(imageUri));
+
+                        if(isLiked == true){
+                            temp.setIsLiked();
+                        }
+                        else{
+                            temp.resetisLiked();
+                        }
                         customListViewValues.add(temp);
                     }
 
@@ -335,18 +444,59 @@ public class MyAddsFragment extends Fragment {
                         //Get user map
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
+                        Map<String, Object> singlePost = (Map<String, Object>) clothesMap.get(postKey);
+                        Boolean isLiked = false;
+                        for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
-                        Map<String,String> singlePost = clothesMap.get(postKey);
+                            String fieldKey = entry11.getKey();
 
-                        if(singlePost==null) continue;
+                            //Log.e("Yups",fieldKey);
 
-                        description = singlePost.get("description");
-                        title = singlePost.get("title");
-                        location = singlePost.get("address");
-                        expirydate = singlePost.get("date");
-                        image = singlePost.get("image");
-                        name = singlePost.get("name");
-                        phonenumber = singlePost.get("contact");
+                            if(fieldKey.equals("interested")){
+//                                Log.e("Bro","interested");
+                                Map<String,String> fieldValue = (Map<String,String>) entry11.getValue();
+
+                                if(fieldValue.get(uId) != null){
+                                    isLiked = true;
+                                }
+                            }
+                            else{
+//                                Log.e("done",fieldKey);
+
+                                String fieldValue = (String)entry11.getValue();
+                                if(fieldKey.equals("description")) {
+                                    description = fieldValue;
+                                }
+                                if(fieldKey.equals("title")) {
+                                    title = fieldValue;
+                                }
+                                if(fieldKey.equals("address")) {
+                                    location = fieldValue;
+                                }
+                                if(fieldKey.equals("date")) {
+                                    expirydate = fieldValue;
+                                }
+                                if(fieldKey.equals("image")) {
+                                    image = fieldValue;
+                                }
+                                if(fieldKey.equals("uid")) {
+                                    postUID = fieldValue;
+                                }
+                                if(fieldKey.equals("name")) {
+                                    name = fieldValue;
+                                }
+                                if(fieldKey.equals("contact")) {
+                                    phonenumber = fieldValue;
+                                }
+                                if(fieldKey.equals("postdate")) {
+                                    postDate = fieldValue;
+                                }
+                                if(fieldKey.equals("imageUri")) {
+                                    imageUri = fieldValue;
+                                }
+                            }
+                        }
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
@@ -354,7 +504,19 @@ public class MyAddsFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
-                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        temp.setItemPostDate(postDate);
+                        temp.setCategoryType("Clothes");
+                        temp.setPostId(postKey);
+                        temp.setuId(uId);
+
+                        if(imageUri!=null) temp.setmImageUri(Uri.parse(imageUri));
+
+                        if(isLiked == true){
+                            temp.setIsLiked();
+                        }
+                        else{
+                            temp.resetisLiked();
+                        }
                         customListViewValues.add(temp);
 
                     }
@@ -362,7 +524,7 @@ public class MyAddsFragment extends Fragment {
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
-                    Log.e("size",customListViewValues.size()+"");
+                    //Log.e("size",customListViewValues.size()+"");
                     rc.setAdapter(new CustomAdapterMyAdds(customListViewValues, context));
                 }
             }
@@ -388,18 +550,59 @@ public class MyAddsFragment extends Fragment {
                         //Get user map
                         String postKey = (String) entry.getKey();
                         ListModel temp = new ListModel();
+                        Map<String, Object> singlePost = (Map<String, Object>) miscMap.get(postKey);
+                        Boolean isLiked = false;
+                        for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
-                        Map<String,String> singlePost = miscMap.get(postKey);
+                            String fieldKey = entry11.getKey();
 
-                        if(singlePost==null) continue;
+                            //Log.e("Yups",fieldKey);
 
-                        description = singlePost.get("description");
-                        title = singlePost.get("title");
-                        location = singlePost.get("address");
-                        expirydate = singlePost.get("date");
-                        image = singlePost.get("image");
-                        name = singlePost.get("name");
-                        phonenumber = singlePost.get("contact");
+                            if(fieldKey.equals("interested")){
+//                                Log.e("Bro","interested");
+                                Map<String,String> fieldValue = (Map<String,String>) entry11.getValue();
+
+                                if(fieldValue.get(uId) != null){
+                                    isLiked = true;
+                                }
+                            }
+                            else{
+//                                Log.e("done",fieldKey);
+
+                                String fieldValue = (String)entry11.getValue();
+                                if(fieldKey.equals("description")) {
+                                    description = fieldValue;
+                                }
+                                if(fieldKey.equals("title")) {
+                                    title = fieldValue;
+                                }
+                                if(fieldKey.equals("address")) {
+                                    location = fieldValue;
+                                }
+                                if(fieldKey.equals("date")) {
+                                    expirydate = fieldValue;
+                                }
+                                if(fieldKey.equals("image")) {
+                                    image = fieldValue;
+                                }
+                                if(fieldKey.equals("uid")) {
+                                    postUID = fieldValue;
+                                }
+                                if(fieldKey.equals("name")) {
+                                    name = fieldValue;
+                                }
+                                if(fieldKey.equals("contact")) {
+                                    phonenumber = fieldValue;
+                                }
+                                if(fieldKey.equals("postdate")) {
+                                    postDate = fieldValue;
+                                }
+                                if(fieldKey.equals("imageUri")) {
+                                    imageUri = fieldValue;
+                                }
+                            }
+                        }
+
                         temp.setItemName(name);
                         temp.setItemDescription(description);
                         temp.setItemPhoneNumber(phonenumber);
@@ -407,7 +610,19 @@ public class MyAddsFragment extends Fragment {
                         temp.setItemTitle(title);
                         temp.setItemExpiryDate(expirydate);
                         temp.setImage(image);
-                        if(singlePost.get("imageUri")!=null) temp.setmImageUri(Uri.parse(singlePost.get("imageUri")));
+                        temp.setItemPostDate(postDate);
+                        temp.setCategoryType("Misc");
+                        temp.setPostId(postKey);
+                        temp.setuId(uId);
+
+                        if(imageUri!=null) temp.setmImageUri(Uri.parse(imageUri));
+
+                        if(isLiked == true){
+                            temp.setIsLiked();
+                        }
+                        else{
+                            temp.resetisLiked();
+                        }
                         customListViewValues.add(temp);
 
                     }
