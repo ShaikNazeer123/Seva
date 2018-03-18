@@ -2,7 +2,9 @@ package com.example.helloworld.seva;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -42,8 +44,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
 
-public class EditProfileActivity extends AppCompatActivity {
-
+public class EditProfileActivity extends AppCompatActivity{
 
     private EditText mEditName;
     private EditText mEditContact;
@@ -249,9 +250,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     newPost.child("imageUri").setValue(mImageUri.toString());
                     //newPost.child("uid").setValue(FirebaseAuth.getCurrUser().getUid());
                     mProgress.dismiss();
-                    FragmentManager fm = getFragmentManager();
-                    fm.popBackStack();
-                    Log.e("back","frag");
                 }
             });
 
@@ -281,11 +279,18 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 
             mProgress.dismiss();
+
+
         }
+
+        Intent mainIntent = new Intent(EditProfileActivity.this, MainActivity.class);
+        startActivity(mainIntent);
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
+
 }
