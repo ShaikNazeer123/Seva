@@ -31,11 +31,11 @@ import static android.widget.Toast.LENGTH_SHORT;
  * Created by Shaik Nazeer on 20-02-2018.
  */
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdds.ViewHolder>{
     private ArrayList data;
     Context context;
 
-    public CustomAdapter(ArrayList d,Context ct) {
+    public CustomAdapterMyAdds(ArrayList d,Context ct) {
         data = d;
         context=ct;
     }
@@ -62,6 +62,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView t_post_image;
         public TextView t_item_post_date;
         public ImageView t_like_image;
+        public ImageView t_edit;
+        public ImageView t_delete;
 
 
         public ViewHolder(View v){
@@ -77,16 +79,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_post_image = v.findViewById(R.id.postImage);
             this.t_item_post_date = v.findViewById(R.id.item_post_date);
             this.t_like_image = v.findViewById(R.id.like);
+            this.t_edit = v.findViewById(R.id.edit);
+            this.t_delete = v.findViewById(R.id.delete);
         }
     }
 
 
 
     @Override
-    public CustomAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-
+    public CustomAdapterMyAdds.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //Context doubt
-        final View v =  LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        final View v =  LayoutInflater.from(context).inflate(R.layout.list_item_myadds, parent, false);
         return new ViewHolder(v);
 
     }
@@ -103,7 +106,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
             holder.t_item_post_date.setText(tempValues.getItemPostDate());
 
-            Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
                 public void onSuccess() {
@@ -151,6 +153,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     holder.t_like_image.setImageResource(R.mipmap.ic_like_g);
                     holder.t_like_image.setTag("0");
                 }
+            }
+        });
+
+        holder.t_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Edit button pressed", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context,EditActivity.class);
+                context.startActivity(i);
+            }
+        });
+
+        holder.t_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -48,7 +48,7 @@ public class MyAddsFragment extends Fragment {
     RecyclerView rc;
     private ArrayList<ListModel> customListViewValues = new ArrayList<ListModel>();
     private RecyclerView.LayoutManager mLayoutManager;
-    private CustomAdapter mAdapter;
+    private CustomAdapterMyAdds mAdapter;
     ListModel dl;
     private FragmentActivity myContext;
 
@@ -157,7 +157,7 @@ public class MyAddsFragment extends Fragment {
         rc.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         rc.setLayoutManager(mLayoutManager);
-        mAdapter = new CustomAdapter(customListViewValues,context);
+        mAdapter = new CustomAdapterMyAdds(customListViewValues,context);
         rc.setAdapter(mAdapter);
     }
 
@@ -255,7 +255,7 @@ public class MyAddsFragment extends Fragment {
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
                     Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                    rc.setAdapter(new CustomAdapterMyAdds(customListViewValues, context));
                 }
             }
 
@@ -307,7 +307,7 @@ public class MyAddsFragment extends Fragment {
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
                     Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                    rc.setAdapter(new CustomAdapterMyAdds(customListViewValues, context));
                 }
             }
 
@@ -360,7 +360,7 @@ public class MyAddsFragment extends Fragment {
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
                     Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                    rc.setAdapter(new CustomAdapterMyAdds(customListViewValues, context));
                 }
             }
 
@@ -413,7 +413,7 @@ public class MyAddsFragment extends Fragment {
 
                     /*rc.setAdapter(new CustomAdapter(customListViewValues, context));*/
                     Log.e("size",customListViewValues.size()+"");
-                    rc.setAdapter(new CustomAdapter(customListViewValues, context));
+                    rc.setAdapter(new CustomAdapterMyAdds(customListViewValues, context));
                 }
             }
 

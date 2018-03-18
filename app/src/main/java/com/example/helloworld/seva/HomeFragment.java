@@ -87,8 +87,6 @@ public class HomeFragment extends Fragment {
         Log.d("OnCreateView","Called");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-
-
         return view;
     }
 
