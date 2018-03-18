@@ -100,6 +100,7 @@
                     android:textColor="#fff"
                     android:textSize="20sp"
                     android:gravity="center"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:textStyle="normal"
                     android:hint="Contact number"

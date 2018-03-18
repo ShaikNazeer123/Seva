@@ -229,7 +229,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final String dob = dobField.getText().toString().trim();
         //TODO pick date from date picker
 
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && mImageUri != null){
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(contact) && !TextUtils.isEmpty(organization) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(gender) && (contact.length()==10) && mImageUri != null){
 
             StorageReference filepath = mStorage.child("Profile_Images").child(mImageUri.getLastPathSegment());
 
@@ -257,7 +257,29 @@ public class EditProfileActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(this,"Any field should not be empty",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Any field should not be empty",Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(name)){
+                mEditName.setError("Name Can't be empty");
+            }
+            if(TextUtils.isEmpty(contact)){
+                mEditContact.setError("Contact Can't be empty");
+            }
+            if(contact.length()!=10){
+                mEditContact.setError("Enter exactly 10 digits");
+            }
+            if(TextUtils.isEmpty(organization)){
+                mEditOrganization.setError("Organization Can't be empty");
+            }
+            if(TextUtils.isEmpty(address)){
+                mEditAddress.setError("Address Can't be empty");
+            }
+            if(TextUtils.isEmpty(gender)){
+                mEditGender.setError("Gender Can't be empty");
+            }
+            if(TextUtils.isEmpty(dob)){
+                dobField.setError("DOB Can't be empty");
+            }
+
             mProgress.dismiss();
         }
     }

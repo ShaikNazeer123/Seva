@@ -21,28 +21,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/postImage"
                 android:layout_width="match_parent"
                 android:layout_height="140sp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/osho_ico_round"
-                android:alpha=".7"
+
                 />
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/round_corners"/>
-            </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="#0277BD"
+                android:background="@color/white"
                 >
 
             <!--<LinearLayout
@@ -64,8 +55,13 @@
                     android:maxLines="1"
                     android:gravity="center"
                     android:text="Title Here"
-                    android:textColor="#E1F5FE"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+                   <!-- android:textColor="#E1F5FE"/>                 -->
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,7 +77,7 @@
                         android:maxLines="1"
                         android:text="By: "
                         android:textSize="18sp"
-                        android:textColor="#E1F5FE" />
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/item_name"
@@ -90,7 +86,7 @@
                         android:maxLines="1"
                         android:textSize="18sp"
                         android:text="Shaik Nazeer"
-                        android:textColor="#E1F5FE" />
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
 
@@ -105,7 +101,7 @@ line2"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:maxLines="2"
-                android:textColor="#E1F5FE"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 />
 
@@ -130,13 +126,15 @@ line2"
                         android:layout_height="wrap_content"
                         android:text="Created:"
                         android:textSize="15sp"
-                        android:textColor="#E1F5FE"/>
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
                     <TextView
                         android:id="@+id/item_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="#E1F5FE"
+                        android:textColor="@color/black"
                         android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -152,13 +150,14 @@ line2"
                         android:layout_height="wrap_content"
                         android:text="Expiry:"
                         android:textSize="15sp"
-                        android:textColor="#E1F5FE"/>
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/item_expiry_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20-12-2017"
-                        android:textColor="#E1F5FE"
+                        android:textColor="@color/black"
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>

@@ -25,10 +25,21 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -45,6 +56,14 @@ public class MainActivity extends AppCompatActivity
     FirebaseUser firebaseUser;
     DrawerLayout drawer;
     ImageView profileBtn;
+    TextView phoneNumber;
+    TextView profileName;
+
+    String userName;
+    String userContact;
+    String userImage;
+
+    DatabaseReference mDatabase;
 
     HomeFragment homeFragment;
     MyAddsFragment myAddsFragment;
@@ -71,13 +90,51 @@ public class MainActivity extends AppCompatActivity
 
         uId = mAuth.getCurrentUser().getUid();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uId);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         View ll = navigationView.getHeaderView(0);
         profileBtn = (ImageView) ll.findViewById(R.id.profilebtn);
+        phoneNumber = (TextView) ll.findViewById(R.id.phonenumber);
+        profileName = (TextView) ll.findViewById(R.id.profilename);
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String,String> singlePost = (Map<String,String>) dataSnapshot.getValue();
+
+                userName = (String) singlePost.get("name");
+                userImage = (String) singlePost.get("image");
+                userContact = (String) singlePost.get("contact");
+
+                profileName.setText(userName);
+                phoneNumber.setText(userContact);
+                Picasso.with(MainActivity.this).load(userImage).networkPolicy(NetworkPolicy.OFFLINE).into(profileBtn, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Picasso.with(MainActivity.this).load(userImage).into(profileBtn);
+                    }
+
+                    @Override
+                    public void onError() {
+                        Picasso.with(MainActivity.this).load(userImage).into(profileBtn);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         if(profileBtn==null){
             Log.e("Profile Button","null");
         }
+
         //profile button action
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
