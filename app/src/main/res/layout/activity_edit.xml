@@ -26,7 +26,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="160sp"
                     android:scaleType="centerCrop"
-                    android:alpha="0.5"
                     />
 
                 <TextView
@@ -41,7 +40,8 @@
                     android:gravity="center"
                     android:text="Add Image"
                     android:textSize="30sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -196,7 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/addPostBtn"
+            android:id="@+id/addUpdateBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"

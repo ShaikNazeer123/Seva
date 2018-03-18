@@ -129,7 +129,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
                 }
             });
-
             if(tempValues.getLikeStatus() == true){
                 holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
                 holder.t_like_image.setTag("1");
@@ -138,13 +137,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 holder.t_like_image.setImageResource(R.mipmap.ic_like);
                 holder.t_like_image.setTag("0");
             }
-
             //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
-
-
-
-
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
