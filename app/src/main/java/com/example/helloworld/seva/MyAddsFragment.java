@@ -223,7 +223,7 @@ public class MyAddsFragment extends Fragment {
 
                 //iterate through each Post
 
-                if(currMap != null) {
+                if(currMap != null && foodMap != null) {
 
                     for (Map.Entry entry: currMap.entrySet()) {
 
@@ -333,7 +333,7 @@ public class MyAddsFragment extends Fragment {
 
                 //iterate through each Post
 
-                if(currMap != null) {
+                if(currMap != null && booksMap != null) {
 
                     for (Map.Entry entry: currMap.entrySet()) {
 
@@ -441,7 +441,7 @@ public class MyAddsFragment extends Fragment {
 
                 //iterate through each Post
 
-                if(currMap != null) {
+                if(currMap != null && clothesMap != null) {
 
                     for (Map.Entry entry: currMap.entrySet()) {
 
@@ -548,7 +548,7 @@ public class MyAddsFragment extends Fragment {
 
                 //iterate through each Post
 
-                if(currMap != null) {
+                if(currMap != null && miscMap != null) {
 
                     for (Map.Entry entry: currMap.entrySet()) {
 
