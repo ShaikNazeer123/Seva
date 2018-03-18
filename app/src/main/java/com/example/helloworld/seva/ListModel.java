@@ -15,6 +15,12 @@ public class ListModel {
     private String expiryDate;
     private String image;
     private String itemPostDate;
+    private String postId;
+    private String categoryType;
+
+    private String uId;
+
+    private Boolean isLiked = false;
 
     private Uri mImageUri;
 
@@ -88,5 +94,41 @@ public class ListModel {
 
     public void setItemPostDate(String itemPostDate) {
         this.itemPostDate = itemPostDate;
+    }
+
+    public String getPostId(){
+        return postId;
+    }
+
+    public void setPostId (String postId) {
+        this.postId = postId;
+    }
+
+    public String getuId(){
+        return uId;
+    }
+
+    public void setuId (String uId) {
+        this.uId = uId;
+    }
+
+    public String getCategoryType(){
+        return categoryType;
+    }
+
+    public void setCategoryType (String categoryType) {
+        this.categoryType = categoryType;
+    }
+
+    public Boolean getLikeStatus(){
+        return isLiked;
+    }
+
+    public void setIsLiked(){
+        isLiked = true;
+    }
+
+    public void resetisLiked(){
+        isLiked = false;
     }
 }

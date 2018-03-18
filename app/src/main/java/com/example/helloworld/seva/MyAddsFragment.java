@@ -142,13 +142,13 @@ public class MyAddsFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseFood = FirebaseDatabase.getInstance().getReference().child("Food");
-        mDatabaseUsersFood = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("food");
+        mDatabaseUsersFood = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("Food");
         mDatabaseClothes = FirebaseDatabase.getInstance().getReference().child("Clothes");
-        mDatabaseUsersClothes = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("clothes");
+        mDatabaseUsersClothes = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("Clothes");
         mDatabaseMisc = FirebaseDatabase.getInstance().getReference().child("Misc");
-        mDatabaseUsersMisc = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("misc");
+        mDatabaseUsersMisc = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("Misc");
         mDatabaseBooks = FirebaseDatabase.getInstance().getReference().child("Books");
-        mDatabaseUsersBooks = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("books");
+        mDatabaseUsersBooks = FirebaseDatabase.getInstance().getReference().child("Users").child(uId).child("myads").child("Books");
 
         //Log.e("Two","yo2");
 
