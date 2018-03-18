@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <DatePicker
-
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:id="@+id/datepicker"
@@ -148,6 +148,7 @@
                         android:textStyle="normal"
                         android:textSize="18sp"
                         android:textColor="#0091EA"
+                        android:padding="5dp"
                         />
 
                     <android.support.design.widget.TextInputLayout
@@ -163,6 +164,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="17sp"
                             android:maxLines="1"
+                            android:padding="5dp"
                             />
                     </android.support.design.widget.TextInputLayout>
 
@@ -176,6 +178,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/address_layout"
                     android:gravity="center"
+                    android:padding="5dp"
                     >
 
                     <TextView
@@ -213,6 +216,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/gender_layout"
                     android:gravity="center"
+                    android:padding="5dp"
                     >
 
                     <TextView
@@ -251,6 +255,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/dob_layout"
                     android:gravity="center"
+                    android:padding="5dp"
                     >
 
                     <TextView

@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.helloworld.seva.PostAddFragment"
-    android:layout_margin="10sp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:windowSoftInputMode="adjustPan"
     tools:showIn="@layout/fragment_post_add"
+    android:background="@color/white"
+    android:padding="8dp"
     >
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:hint="Expiry date"
-                android:text="faldskfjdsal"
+                android:text="--/--/--"
                 android:textColorHint="#757575"
                 android:backgroundTint="#80D8FF"
                 android:editable="false"

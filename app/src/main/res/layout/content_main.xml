@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.helloworld.seva.MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:background="@color/grey_500">
+    android:background="@color/grey_300">
 
     <FrameLayout
         android:layout_width="match_parent"

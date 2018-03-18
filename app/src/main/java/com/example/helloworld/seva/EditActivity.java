@@ -184,16 +184,16 @@ public class EditActivity extends AppCompatActivity {
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(EditActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    DatePickerDialog dpd = new DatePickerDialog(EditActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                    dpd.getDatePicker().setMinDate(System.currentTimeMillis());
+                    dpd.show();
             }
         });
 
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yy";
+        String myFormat = "dd-MM-yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         addDate.setText(sdf.format(myCalendar.getTime()));
     }
