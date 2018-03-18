@@ -90,8 +90,6 @@ public class HomeFragment extends Fragment {
         if(mHomeFragmentView==null)
          mHomeFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-
-
         return mHomeFragmentView;
     }
 

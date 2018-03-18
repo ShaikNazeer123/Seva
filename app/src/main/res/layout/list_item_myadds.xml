@@ -11,13 +11,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/postImage"
                 android:layout_width="match_parent"
                 android:layout_height="160sp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/food"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    >
+                     <ImageView
+                         android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_edit"
+                        android:background="@color/grey_100"
+                        android:layout_gravity="right"
+                         android:padding="2dp"/>
+                    <ImageView
+                        android:id="@+id/delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete"
+                        android:background="@color/grey_100"
+                        android:layout_gravity="right"
+                        android:padding="2dp"/>
+                </LinearLayout>
+            </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,28 +135,28 @@ line2"
                         android:textSize="15dp"/>
                 </LinearLayout>
                 <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="right"
-
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
                     android:layout_height="wrap_content"
-                    android:text="Expiry:"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/item_expiry_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20-12-2017"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"/>
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:gravity="right"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expiry:"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/item_expiry_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20-12-2017"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
