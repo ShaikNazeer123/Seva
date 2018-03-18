@@ -214,7 +214,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                 LinearLayout linearLayout1;
                 TextView closePopupBtn;
                 TextView deleteBtn;
-                final ProgressDialog progressDialog  = new ProgressDialog(context);
+                final ProgressDialog progressDialog  = new ProgressDialog(view.getContext());
 
                 closePopupBtn = (TextView) customView.findViewById(R.id.cancel);
                 deleteBtn = (TextView) customView.findViewById(R.id.delete);
@@ -239,9 +239,11 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                     public void onClick(View view) {
                         popupWindow.dismiss();
                         progressDialog.show();
-                        progressDialog.setMessage("Deleting");
+                        //Log.e("pg bar","started");
+                        progressDialog.setMessage("Deleting...");
                         mDatabase.child(holder.categoryType).child(holder.postId).setValue(null);
                         progressDialog.dismiss();
+                        data.remove(position);
                         notifyDataSetChanged();
                     }
                 });
