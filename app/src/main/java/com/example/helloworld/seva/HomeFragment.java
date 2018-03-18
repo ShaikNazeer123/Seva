@@ -44,6 +44,8 @@ public class HomeFragment extends Fragment {
     TabLayout mainTabLayout;
     ViewPager mainViewPager;
 
+    View mHomeFragmentView=null;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,11 +87,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Log.d("OnCreateView","Called");
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        if(mHomeFragmentView==null)
+         mHomeFragmentView = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
 
 
-        return view;
+        return mHomeFragmentView;
     }
 
     class MyOwnPagerAdapter extends FragmentPagerAdapter{
@@ -165,7 +168,7 @@ public class HomeFragment extends Fragment {
         Log.d("OnViewCreated","Called");
         mainTabLayout = (TabLayout)view.findViewById(R.id.maintablayout);
         mainViewPager = (ViewPager)view.findViewById(R.id.mainviewpager);
-        //mainViewPager.setOffscreenPageLimit(0);
+        mainViewPager.setOffscreenPageLimit(4);
 
 
         mainViewPager.setAdapter(new MyOwnPagerAdapter(getChildFragmentManager()));

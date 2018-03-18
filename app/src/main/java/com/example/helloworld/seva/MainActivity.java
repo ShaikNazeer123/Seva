@@ -46,6 +46,14 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     ImageView profileBtn;
 
+    HomeFragment homeFragment;
+    MyAddsFragment myAddsFragment;
+    IntersetsFragment intersetsFragment;
+    AboutFragment aboutFragment;
+    LikeSupportFragment likeSupportFragment;
+    PostAddFragment postAddFragment;
+    static String uId;
+
     static Context k;
 
     @Override
@@ -56,6 +64,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Log.e("Main Activity ","Oncreate");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        uId = mAuth.getCurrentUser().getUid();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
@@ -82,6 +95,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        homeFragment = HomeFragment.newInstance(null,null);
+        myAddsFragment = MyAddsFragment.newInstance(null,null);
+        intersetsFragment = IntersetsFragment.newInstance(null,null);
+        aboutFragment = AboutFragment.newInstance(null,null);
+        likeSupportFragment = LikeSupportFragment.newInstance(null,null);
 
         /*
         Intent intentExtras = getIntent();
@@ -134,12 +152,12 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
 
 
-
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Log.e("Mainactivity","onbackpressed");
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -189,16 +207,17 @@ public class MainActivity extends AppCompatActivity
 
         android.support.v4.app.Fragment fragment =null;
         if (id == R.id.home) {
-            fragment = HomeFragment.newInstance(null,null);
+            fragment = homeFragment;
         } else if (id == R.id.my_ads) {
-            fragment = MyAddsFragment.newInstance(null,null);;
+            fragment = myAddsFragment;
         } else if (id == R.id.interests) {
-            fragment = IntersetsFragment.newInstance(null,null);;
+            fragment = intersetsFragment;
         } else if (id == R.id.about) {
-            fragment = new AboutFragment();
+            fragment = aboutFragment;
         }else if(id == R.id.like_support){
-            fragment = new LikeSupportFragment();
+            fragment = likeSupportFragment;
         }else if (id == R.id.logout) {
+            Log.e("ushar","logoutb");
             mAuth = FirebaseAuth.getInstance();
             firebaseUser = mAuth.getCurrentUser();
             mAuth.signOut();
@@ -219,6 +238,10 @@ public class MainActivity extends AppCompatActivity
     }
     public Context getContext(){
         return this;
+    }
+
+    public static String getuId() {
+        return uId;
     }
 
     @Override

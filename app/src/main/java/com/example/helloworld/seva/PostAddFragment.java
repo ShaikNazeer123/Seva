@@ -344,7 +344,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
-                        final DatabaseReference foodRef = userRef.child("myads").child("food");
+                        final DatabaseReference foodRef = userRef.child("myads").child("Food");
 
                         foodRef.child(newKey).setValue("true");
                     }
@@ -364,7 +364,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
-                        final DatabaseReference clothesRef = userRef.child("myads").child("clothes");
+                        final DatabaseReference clothesRef = userRef.child("myads").child("Clothes");
 
                         clothesRef.child(newKey).setValue("true");
                     }
@@ -384,7 +384,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
-                        final DatabaseReference booksRef = userRef.child("myads").child("books");
+                        final DatabaseReference booksRef = userRef.child("myads").child("Books");
 
                         booksRef.child(newKey).setValue("true");
 
@@ -405,7 +405,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("postdate").setValue(formattedDate);
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
-                        final DatabaseReference miscRef = userRef.child("myads").child("misc");
+                        final DatabaseReference miscRef = userRef.child("myads").child("Misc");
 
                         miscRef.child(newKey).setValue("true");
                     }
@@ -415,13 +415,15 @@ public class PostAddFragment extends Fragment {
                     mProgress.dismiss();
 
                     Intent mainIntent = new Intent(getContext(), MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    //mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainIntent);
                 }
             });
 
         }
     }
+
+
 
     @Override
     public void onDetach() {

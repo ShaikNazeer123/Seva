@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 import com.example.helloworld.seva.ListModel;
 import com.example.helloworld.seva.MainActivity;
 import com.example.helloworld.seva.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -26,6 +30,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
+import static com.example.helloworld.seva.MainActivity.getuId;
 
 /**
  * Created by Shaik Nazeer on 20-02-2018.
@@ -34,10 +39,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
     private ArrayList data;
     Context context;
+    public DatabaseReference mDatabase;
 
     public CustomAdapter(ArrayList d,Context ct) {
         data = d;
         context=ct;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
     public ArrayList getData() {
         return data;
@@ -63,6 +70,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView t_item_post_date;
         public ImageView t_like_image;
 
+        public String uId;
+        public String postId;
+        public String categoryType;
+
+        public Boolean isLiked;
 
         public ViewHolder(View v){
             super(v);
@@ -102,8 +114,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.t_location.setText(tempValues.getItemLocation());
             holder.t_expiryDate.setText(tempValues.getItemExpiryDate());
             holder.t_item_post_date.setText(tempValues.getItemPostDate());
+            holder.postId = tempValues.getPostId();
+            holder.categoryType = tempValues.getCategoryType();
+            holder.uId = tempValues.getuId();
 
-            Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
+            //Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
                 public void onSuccess() {
@@ -116,8 +131,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             });
 
+            if(tempValues.getLikeStatus() == true){
+                holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
+                holder.t_like_image.setTag("1");
+            }
+            else{
+                holder.t_like_image.setImageResource(R.mipmap.ic_like);
+                holder.t_like_image.setTag("0");
+            }
+
             //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
+
+
 
 
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
@@ -146,10 +172,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     //state unlike --> like
                     holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
                     holder.t_like_image.setTag("1");
+                    mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue("true");
+                    mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue("true");
                 }
                 else{
                     holder.t_like_image.setImageResource(R.mipmap.ic_like);
                     holder.t_like_image.setTag("0");
+                    mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue(null);
+                    mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue(null);
                 }
             }
         });
