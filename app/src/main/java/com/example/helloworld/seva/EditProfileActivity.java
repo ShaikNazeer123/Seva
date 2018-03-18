@@ -277,6 +277,8 @@ public class EditProfileActivity extends AppCompatActivity{
                     newPost.child("imageUri").setValue(mImageUri.toString());
                     //newPost.child("uid").setValue(FirebaseAuth.getCurrUser().getUid());
                     mProgress.dismiss();
+                    Intent mainIntent = new Intent(EditProfileActivity.this, MainActivity.class);
+                    startActivity(mainIntent);
                 }
             });
 
@@ -307,9 +309,6 @@ public class EditProfileActivity extends AppCompatActivity{
 
 
         }
-
-        Intent mainIntent = new Intent(EditProfileActivity.this, MainActivity.class);
-        startActivity(mainIntent);
 
     }
 
