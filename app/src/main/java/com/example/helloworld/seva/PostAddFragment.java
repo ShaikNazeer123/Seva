@@ -264,6 +264,7 @@ public class PostAddFragment extends Fragment {
             mImageUri = data.getData();
 
             CropImage.activity(mImageUri)
+                    .setAspectRatio(1,1)
                     .start(getContext(), this);
         }
 
