@@ -207,33 +207,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gender_field"
-                android:gravity="center"
+                android:gravity="left"
                 >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="5.3"
                     android:text="GENDER"
                     android:textStyle="normal"
                     android:textSize="20sp"
                     android:textColor="#0091EA"
                     />
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="6"
-                    android:layout_height="wrap_content"
-                    app:hintTextAppearance="@color/grey_100">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:id="@+id/edit_gender"
-                        android:layout_height="wrap_content"
-                        android:hint="Enter male/female/other"
-                        android:textSize="17sp"
-                        android:maxLines="1"
-                        />
-                </android.support.design.widget.TextInputLayout>
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/edit_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

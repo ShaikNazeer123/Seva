@@ -15,11 +15,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +53,8 @@ public class EditProfileActivity extends AppCompatActivity{
     private EditText mEditContact;
     private EditText mEditOrganization;
     private EditText mEditAddress;
-    private EditText mEditGender;
+    private Spinner mEditGender;
+    private static final String[]paths = {"Male", "Female"};
 
     private Button mSaveBtn;
 
@@ -73,6 +77,7 @@ public class EditProfileActivity extends AppCompatActivity{
     DatePicker datePicker;
     TextView dobField;
     Calendar myCalendar;
+    String gender;
 
 
     @Override
@@ -94,13 +99,36 @@ public class EditProfileActivity extends AppCompatActivity{
         mEditContact = (EditText) findViewById(R.id.edit_contact);
         mEditOrganization = (EditText) findViewById(R.id.edit_organization);
         mEditAddress = (EditText) findViewById(R.id.edit_address);
-        mEditGender = (EditText) findViewById(R.id.edit_gender);
+        mEditGender = (Spinner) findViewById(R.id.edit_gender);
 
         imageView = (ImageButton) findViewById(R.id.profileImage);
         dobbtn = (ImageView) findViewById(R.id.pickdob);
         datePicker = (DatePicker) findViewById(R.id.datepicker);
         dobField = (TextView)findViewById(R.id.dob);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditProfileActivity.this,
+                android.R.layout.simple_spinner_item,paths);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mEditGender.setAdapter(adapter);
+        mEditGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        gender="Male";
+                        break;
+                    case 1:
+                        gender="Female";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                    gender="Male";
+            }
+        });
 
         mDatabaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,7 +144,7 @@ public class EditProfileActivity extends AppCompatActivity{
                     mEditContact.setText(userMap.get("contact"));
                     mEditOrganization.setText(userMap.get("organization"));
                     mEditAddress.setText(userMap.get("address"));
-                    mEditGender.setText(userMap.get("gender"));
+
                     dobField.setText(userMap.get("dob"));
                     if(userMap.get("imageUri") != null) mImageUri = Uri.parse(userMap.get("imageUri"));
 
@@ -177,15 +205,15 @@ public class EditProfileActivity extends AppCompatActivity{
         dobbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(EditProfileActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog dpd = new DatePickerDialog(EditProfileActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                dpd.getDatePicker().setMaxDate(System.currentTimeMillis());
+                dpd.show();
             }
         });
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yy";
+        String myFormat = "dd-MM-yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         dobField.setText(sdf.format(myCalendar.getTime()));
     }
@@ -226,7 +254,6 @@ public class EditProfileActivity extends AppCompatActivity{
         final String contact = mEditContact.getText().toString().trim();
         final String organization = mEditOrganization.getText().toString().trim();
         final String address = mEditAddress.getText().toString().trim();
-        final String gender = mEditGender.getText().toString().trim();
         final String dob = dobField.getText().toString().trim();
         //TODO pick date from date picker
 
@@ -271,9 +298,7 @@ public class EditProfileActivity extends AppCompatActivity{
             if(TextUtils.isEmpty(address)){
                 mEditAddress.setError("Address Can't be empty");
             }
-            if(TextUtils.isEmpty(gender)){
-                mEditGender.setError("Gender Can't be empty");
-            }
+
             if(TextUtils.isEmpty(dob)){
                 dobField.setError("DOB Can't be empty");
             }

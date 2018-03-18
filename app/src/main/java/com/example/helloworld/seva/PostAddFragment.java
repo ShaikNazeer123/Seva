@@ -200,7 +200,25 @@ public class PostAddFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                addPost();
+                Boolean flag=true;
+                if(TextUtils.isEmpty(mAddTitle.getText().toString().trim())){
+                    mAddTitle.setError("Title can't be empty");
+                    flag=false;
+                }
+                if(TextUtils.isEmpty(mAddDescription.getText().toString().trim())){
+                    mAddDescription.setError("Description can't be empty");
+                    flag=false;
+                }
+                if(TextUtils.isEmpty(mAddAddress.getText().toString().trim())){
+                    mAddAddress.setError("Address can't be empty");
+                    flag=false;
+                }
+                if(TextUtils.isEmpty(mAddDate.getText().toString().trim())){
+                    mAddDate.setError("Date can't be empty");
+                    flag=false;
+                }
+                if(flag)
+                    addPost();
             }
         });
 
@@ -221,10 +239,24 @@ public class PostAddFragment extends Fragment {
         datebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(getActivity()!=null)
-                new DatePickerDialog(getActivity(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                if(getActivity()!=null) {
+                    DatePickerDialog dpd = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                    dpd.getDatePicker().setMinDate(System.currentTimeMillis());
+                    dpd.show();
+                }
+                else
+                    Toast.makeText(getContext(),"get context returned null in postAddFragment",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        expiryDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getActivity()!=null) {
+                    DatePickerDialog dpd = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                    dpd.getDatePicker().setMinDate(System.currentTimeMillis());
+                    dpd.show();
+                }
                 else
                     Toast.makeText(getContext(),"get context returned null in postAddFragment",Toast.LENGTH_SHORT).show();
             }
@@ -233,7 +265,7 @@ public class PostAddFragment extends Fragment {
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yy";
+        String myFormat = "dd-MM-yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         expiryDate.setText(sdf.format(myCalendar.getTime()));
     }
