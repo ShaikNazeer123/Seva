@@ -119,11 +119,9 @@ public class MyAddsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         if(mListener!=null){
             mListener.onFragmentInteraction("My adds");
         }
-
         View view = inflater.inflate(R.layout.fragment_my_adds, container, false);
         rc = (RecyclerView) view.findViewById(R.id.recycler_view_my_adds);
         return view;
