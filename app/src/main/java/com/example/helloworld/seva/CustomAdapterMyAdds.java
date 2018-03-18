@@ -44,7 +44,6 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
     Context context;
     public DatabaseReference mDatabase;
 
-
     public CustomAdapterMyAdds(ArrayList d,Context ct) {
         data = d;
         context=ct;
@@ -233,6 +232,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                     @Override
                     public void onClick(View view) {
                         //delete method here
+                        mDatabase.child(holder.categoryType).child(holder.postId).setValue(null);
                     }
                 });
                 //Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
