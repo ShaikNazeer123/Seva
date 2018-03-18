@@ -1,47 +1,52 @@
 package com.example.helloworld.seva;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.ContactsContract;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.helloworld.seva.ListModel;
 import com.example.helloworld.seva.MainActivity;
 import com.example.helloworld.seva.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
-import static com.example.helloworld.seva.MainActivity.getuId;
 
 /**
  * Created by Shaik Nazeer on 20-02-2018.
  */
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdds.ViewHolder>{
     private ArrayList data;
     Context context;
     public DatabaseReference mDatabase;
 
-    public CustomAdapter(ArrayList d,Context ct) {
+    public CustomAdapterMyAdds(ArrayList d,Context ct) {
         data = d;
         context=ct;
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -69,6 +74,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView t_post_image;
         public TextView t_item_post_date;
         public ImageView t_like_image;
+        public ImageView t_edit;
+        public ImageView t_delete;
 
         public String uId;
         public String postId;
@@ -89,16 +96,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_post_image = v.findViewById(R.id.postImage);
             this.t_item_post_date = v.findViewById(R.id.item_post_date);
             this.t_like_image = v.findViewById(R.id.like);
+            this.t_edit = v.findViewById(R.id.edit);
+            this.t_delete = v.findViewById(R.id.delete);
         }
     }
 
 
 
     @Override
-    public CustomAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-
+    public CustomAdapterMyAdds.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //Context doubt
-        final View v =  LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        final View v =  LayoutInflater.from(context).inflate(R.layout.list_item_myadds, parent, false);
         return new ViewHolder(v);
 
     }
@@ -118,17 +126,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.categoryType = tempValues.getCategoryType();
             holder.uId = tempValues.getuId();
 
-            //Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
+
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
                 @Override
                 public void onSuccess() {
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
                 }
+
                 @Override
                 public void onError() {
                     Picasso.with(context).load(tempValues.getImage()).into(holder.t_post_image);
                 }
             });
+
             if(tempValues.getLikeStatus() == true){
                 holder.t_like_image.setImageResource(R.mipmap.ic_unlike);
                 holder.t_like_image.setTag("1");
@@ -137,8 +147,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 holder.t_like_image.setImageResource(R.mipmap.ic_like);
                 holder.t_like_image.setTag("0");
             }
+
             //holder.t_post_image.setImageURI(tempValues.getImageUri());
         }
+
+
         holder.t_call_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,6 +187,67 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     mDatabase.child("Users").child(holder.uId).child("myinterests").child(holder.categoryType).child(holder.postId).setValue(null);
                     mDatabase.child(holder.categoryType).child(holder.postId).child("interested").child(holder.uId).setValue(null);
                 }
+            }
+        });
+
+        holder.t_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Toast.makeText(context, "Edit button pressed", Toast.LENGTH_SHORT).show();
+                Intent editIntent = new Intent(context,EditActivity.class);
+                editIntent.putExtra("postId",holder.postId);
+                editIntent.putExtra("categoryType",holder.categoryType);
+                context.startActivity(editIntent);
+            }
+        });
+
+
+
+        holder.t_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.popup_window,null);
+
+                final PopupWindow popupWindow;
+                LinearLayout linearLayout1;
+                TextView closePopupBtn;
+                TextView deleteBtn;
+                final ProgressDialog progressDialog  = new ProgressDialog(view.getContext());
+
+                closePopupBtn = (TextView) customView.findViewById(R.id.cancel);
+                deleteBtn = (TextView) customView.findViewById(R.id.delete);
+
+                //instantiate popup window
+                popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                //display the popup window
+                popupWindow.showAsDropDown(view);
+
+                //close the popup window on button click
+                closePopupBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //dismiss delete
+                        popupWindow.dismiss();
+                    }
+                });
+
+                deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                        progressDialog.show();
+                        //Log.e("pg bar","started");
+                        progressDialog.setMessage("Deleting...");
+                        mDatabase.child(holder.categoryType).child(holder.postId).setValue(null);
+                        progressDialog.dismiss();
+                        data.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+                //Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
             }
         });
     }

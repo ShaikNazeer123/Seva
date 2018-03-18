@@ -157,6 +157,7 @@ public class ProfileFragment extends Fragment {
                 mOrganizationField.setText(userMap.get("organization"));
                 mAddressField.setText(userMap.get("address"));
                 mGenderField.setText(userMap.get("gender"));
+                mDobField.setText(userMap.get("dob"));
 
                 Picasso.with(getActivity()).load(userMap.get("image")).networkPolicy(NetworkPolicy.OFFLINE).into(mProfileImage, new Callback() {
                     @Override
@@ -169,7 +170,6 @@ public class ProfileFragment extends Fragment {
                         Picasso.with(getActivity()).load(userMap.get("image")).into(mProfileImage);
                     }
                 });
-                //mDobField.setText(userMap.get("dob"));
             }
 
             @Override

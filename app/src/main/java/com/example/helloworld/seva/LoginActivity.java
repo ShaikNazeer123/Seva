@@ -434,6 +434,8 @@ public class LoginActivity extends AppCompatActivity implements
                         Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(mainIntent);
+                        mDatabaseUsers.removeEventListener(this);
+                        finish();
                     } else {
 
                         Bundle extraData = new Bundle();
@@ -444,7 +446,8 @@ public class LoginActivity extends AppCompatActivity implements
                         mainIntent.putExtras(extraData);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(mainIntent);
-
+                        mDatabaseUsers.removeEventListener(this);
+                        finish();
                         /*
 
                         //Bundle args = new Bundle();
