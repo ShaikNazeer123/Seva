@@ -1,4 +1,5 @@
 package com.example.helloworld.seva;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
@@ -209,6 +210,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                 LinearLayout linearLayout1;
                 TextView closePopupBtn;
                 TextView deleteBtn;
+                final ProgressDialog progressDialog  = new ProgressDialog(context);
 
                 closePopupBtn = (TextView) customView.findViewById(R.id.cancel);
                 deleteBtn = (TextView) customView.findViewById(R.id.delete);
@@ -231,8 +233,12 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //delete method here
+                        popupWindow.dismiss();
+                        progressDialog.show();
+                        progressDialog.setMessage("Deleting");
                         mDatabase.child(holder.categoryType).child(holder.postId).setValue(null);
+                        progressDialog.dismiss();
+                        notifyDataSetChanged();
                     }
                 });
                 //Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
