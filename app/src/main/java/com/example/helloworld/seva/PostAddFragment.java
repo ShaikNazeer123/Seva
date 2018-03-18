@@ -414,6 +414,7 @@ public class PostAddFragment extends Fragment {
 
                     mProgress.dismiss();
 
+                    Log.e("cn",getFragmentManager().getBackStackEntryCount()+"");
                     Intent mainIntent = new Intent(getContext(), MainActivity.class);
                     //mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainIntent);
