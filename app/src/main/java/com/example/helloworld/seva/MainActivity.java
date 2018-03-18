@@ -224,7 +224,6 @@ public class MainActivity extends AppCompatActivity
         }else if(id == R.id.like_support){
             fragment = likeSupportFragment;
         }else if (id == R.id.logout) {
-            Log.e("ushar","logoutb");
             mAuth = FirebaseAuth.getInstance();
             firebaseUser = mAuth.getCurrentUser();
             mAuth.signOut();
