@@ -185,8 +185,8 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Edit button pressed", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(context,EditActivity.class);
-                context.startActivity(i);
+                Intent editIntent = new Intent(context,EditActivity.class);
+                context.startActivity(editIntent);
             }
         });
 
