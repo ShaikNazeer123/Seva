@@ -160,7 +160,6 @@ public class IntersetsFragment extends Fragment {
     }
 
     public void getData() {
-        customListViewValues.clear();
 
         mDatabaseFood.addValueEventListener(new ValueEventListener() {
             @Override
@@ -210,10 +209,13 @@ public class IntersetsFragment extends Fragment {
             }
         });
 
+        customListViewValues.clear();
+
         mDatabaseUsersFood.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 Map<String, String> currMap = (Map<String, String>) dataSnapshot.getValue();
 
                 //iterate through each Post
