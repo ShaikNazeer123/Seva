@@ -24,24 +24,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="10">
-                <View
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"></View>
+                android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/postImage"
                     android:paddingTop="5dp"
-                    android:layout_weight="6"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="160sp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/osho_ico_round"/>
-                <View
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"></View>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
