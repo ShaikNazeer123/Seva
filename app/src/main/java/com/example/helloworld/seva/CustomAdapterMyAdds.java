@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -192,8 +193,11 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         holder.t_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Edit button pressed", Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(context, "Edit button pressed", Toast.LENGTH_SHORT).show();
                 Intent editIntent = new Intent(context,EditActivity.class);
+                editIntent.putExtra("postId",holder.postId);
+                editIntent.putExtra("categoryType",holder.categoryType);
                 context.startActivity(editIntent);
             }
         });

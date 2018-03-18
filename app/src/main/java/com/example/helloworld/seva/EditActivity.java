@@ -1,6 +1,7 @@
 package com.example.helloworld.seva;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class EditActivity extends AppCompatActivity {
 
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabasePost;
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mDatabaseFood;
     private DatabaseReference mDatabaseClothes;
@@ -44,11 +46,19 @@ public class EditActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     Button updateBtn;
 
+    private String title;
+    private String description;
+    private String address;
+    private String date;
+    private String imageUrl;
+
     private Uri mImageUri = null;
 
     private ProgressDialog mProgress;
 
     private String uId;
+    private String postId;
+    private String categoryType;
 
     private static final int GALLERY_REQUEST = 1;
 
@@ -59,16 +69,20 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        Intent intent = getIntent();
+        postId = intent.getStringExtra("postId");
+        categoryType = intent.getStringExtra("categoryType");
+
         mProgress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
         uId = mAuth.getCurrentUser().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabaseFood = FirebaseDatabase.getInstance().getReference().child("Food");
-        mDatabaseClothes = FirebaseDatabase.getInstance().getReference().child("Clothes");
-        mDatabaseBooks = FirebaseDatabase.getInstance().getReference().child("Books");
-        mDatabaseMisc = FirebaseDatabase.getInstance().getReference().child("Misc");
+//        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
+//        mDatabaseFood = FirebaseDatabase.getInstance().getReference().child("Food");
+//        mDatabaseClothes = FirebaseDatabase.getInstance().getReference().child("Clothes");
+//        mDatabaseBooks = FirebaseDatabase.getInstance().getReference().child("Books");
+//        mDatabaseMisc = FirebaseDatabase.getInstance().getReference().child("Misc");
 
         mStorage = FirebaseStorage.getInstance().getReference();
 
@@ -79,6 +93,20 @@ public class EditActivity extends AppCompatActivity {
         addDate = (EditText) findViewById(R.id.addDate);
         datePicker = (ImageView) findViewById(R.id.pickexpdate);
         updateBtn = (Button) findViewById(R.id.addUpdateBtn);
+
+        mDatabasePost = mDatabase.child(categoryType).child(postId);
+
+        mDatabasePost.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 
