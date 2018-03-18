@@ -14,7 +14,7 @@
             android:title="My Ads" />
         <item
             android:id="@+id/interests"
-            android:icon="@drawable/ic_interests"
+            android:icon="@mipmap/love"
             android:title="Interests" />
         <item
             android:id="@+id/about"

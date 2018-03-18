@@ -455,6 +455,11 @@ public class PostAddFragment extends Fragment {
             });
 
         }
+        else{
+            if(mImageUri==null){
+                Toast.makeText(getContext(),"Please add image",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
