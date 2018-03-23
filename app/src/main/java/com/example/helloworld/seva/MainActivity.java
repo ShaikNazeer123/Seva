@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
                 ft.replace(R.id.mainFrame,fragment);
+                ft.addToBackStack(null);
                 ft.commit();
 
             }
@@ -207,6 +208,7 @@ public class MainActivity extends AppCompatActivity
 
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame,new HomeFragment());
+
         ft.commit();
 
 
@@ -257,6 +259,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new PostAddFragment();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.mainFrame,fragment);
+            ft.addToBackStack(null);
             ft.commit();
         }
 
@@ -292,6 +295,7 @@ public class MainActivity extends AppCompatActivity
         if(fragment!=null){
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.mainFrame,fragment);
+            ft.addToBackStack(null);
             ft.commit();
         }
 

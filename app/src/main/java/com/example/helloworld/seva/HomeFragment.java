@@ -168,10 +168,8 @@ public class HomeFragment extends Fragment {
         mainViewPager = (ViewPager)view.findViewById(R.id.mainviewpager);
         mainViewPager.setOffscreenPageLimit(4);
 
-
         mainViewPager.setAdapter(new MyOwnPagerAdapter(getChildFragmentManager()));
         mainTabLayout.setupWithViewPager(mainViewPager);
-
 
         if(mListener!=null){
             mListener.onFragmentInteraction("Home");
