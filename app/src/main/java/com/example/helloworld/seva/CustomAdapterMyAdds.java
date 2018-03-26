@@ -257,6 +257,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             @Override
             public void onClick(View view) {
                 //complete
+
             }
         });
     }

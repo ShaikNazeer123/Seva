@@ -22,7 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 
@@ -185,8 +188,16 @@ public class MiscellaneousFragment extends Fragment {
                             temp.resetisLiked();
                         }
 //                        Log.e("data: ",temp.getItemName()+" "+temp.getItemDescription()+" "+temp.getItemPhoneNumber()+" "+temp.getItemLocation()+" ");
-
-                        customListViewValues.add(temp);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                        //  SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa");
+                        try {
+                            Date date = dateFormat.parse(expirydate);
+                            Log.e("Time", date+"");
+                            if (System.currentTimeMillis() <= date.getTime()) {
+                                customListViewValues.add(temp);
+                            }
+                        } catch (ParseException e) {
+                        }
                     }
 
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();

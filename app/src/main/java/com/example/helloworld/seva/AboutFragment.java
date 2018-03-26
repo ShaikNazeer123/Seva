@@ -68,7 +68,7 @@ public class AboutFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Element adsElement=new Element();
-        adsElement.setTitle("Advertise here");
+        adsElement.setTitle("Advertise here(Currently unavailable)");
 
         aboutPage=new AboutPage(getContext())
                 .isRTL(false)
