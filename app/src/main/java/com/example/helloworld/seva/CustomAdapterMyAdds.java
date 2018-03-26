@@ -83,6 +83,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         public String categoryType;
 
         public Boolean isLiked;
+        public Boolean isCompleted;
 
         public ViewHolder(View v){
             super(v);
@@ -256,8 +257,8 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         holder.t_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //complete
-
+                mDatabase.child("Transactions").child(holder.categoryType).child(holder.postId).setValue("true");
+                mDatabase.child(holder.categoryType).child(holder.postId).child("iscompleted").setValue("true");
             }
         });
     }

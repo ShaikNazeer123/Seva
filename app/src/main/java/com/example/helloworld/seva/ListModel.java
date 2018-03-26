@@ -21,6 +21,7 @@ public class ListModel {
     private String uId;
 
     private Boolean isLiked = false;
+    private Boolean isCompleted = false;
 
     private Uri mImageUri;
 
@@ -130,5 +131,18 @@ public class ListModel {
 
     public void resetisLiked(){
         isLiked = false;
+    }
+
+
+    public Boolean geCompleteStatus(){
+        return isCompleted;
+    }
+
+    public void setIsCompleted(){
+        isCompleted = true;
+    }
+
+    public void resetisCompleted(){
+        isCompleted = false;
     }
 }

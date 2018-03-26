@@ -375,6 +375,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
+                        newPost.child("iscompleted").setValue("false");
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
                         final DatabaseReference foodRef = userRef.child("myads").child("Food");
@@ -395,6 +396,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
+                        newPost.child("iscompleted").setValue("false");
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
                         final DatabaseReference clothesRef = userRef.child("myads").child("Clothes");
@@ -415,6 +417,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
+                        newPost.child("iscompleted").setValue("false");
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
                         final DatabaseReference booksRef = userRef.child("myads").child("Books");
@@ -436,6 +439,7 @@ public class PostAddFragment extends Fragment {
                         newPost.child("image").setValue(downloadUri.toString());
                         newPost.child("imageUri").setValue(mImageUri.toString());
                         newPost.child("postdate").setValue(formattedDate);
+                        newPost.child("iscompleted").setValue("false");
 
                         DatabaseReference userRef = mDatabaseUsers.child(uId);
                         final DatabaseReference miscRef = userRef.child("myads").child("Misc");
