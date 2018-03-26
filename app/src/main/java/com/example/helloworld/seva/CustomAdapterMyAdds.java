@@ -77,6 +77,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         public ImageView t_edit;
         public ImageView t_delete;
         public  ImageView t_complete;
+        public TextView t_text_complete;
 
         public String uId;
         public String postId;
@@ -101,6 +102,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             this.t_edit = v.findViewById(R.id.edit);
             this.t_delete = v.findViewById(R.id.delete);
             this.t_complete = v.findViewById(R.id.complete);
+            this.t_text_complete = v.findViewById(R.id.completed);
         }
     }
 
@@ -262,6 +264,15 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                 mDatabase.child(holder.categoryType).child(holder.postId).child("iscompleted").setValue("true");
             }
         });
+        Log.e("lol",holder.isCompleted+"");
+        if(holder.isCompleted){
+            holder.t_text_complete.setVisibility(View.VISIBLE);
+            holder.t_complete.setVisibility(View.GONE);
+        }
+        else{
+            holder.t_text_complete.setVisibility(View.GONE);
+            holder.t_complete.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
