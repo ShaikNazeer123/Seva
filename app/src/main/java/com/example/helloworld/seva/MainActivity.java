@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         MyAddsFragment.OnFragmentInteractionListener,
         ProfileFragment.OnFragmentInteractionListener,
         PostAddFragment.OnFragmentInteractionListener,
+        TransactionFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;

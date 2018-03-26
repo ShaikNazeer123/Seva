@@ -84,18 +84,17 @@ public class TransactionFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         if(mListener!=null){
-            mListener.onFragmentInteraction("Transaction");
+            mListener.onFragmentInteraction("Transactions");
         }
-        View view = inflater.inflate(R.layout.fragment_my_adds, container, false);
-        rc = (RecyclerView) view.findViewById(R.id.recycler_view_my_adds);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_transaction, container, false);
 
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String st) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(st);
         }
     }
 
@@ -128,6 +127,6 @@ public class TransactionFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(String st);
     }
 }
