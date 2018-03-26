@@ -63,14 +63,17 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(mListener!=null){
+            mListener.onFragmentInteraction("Transactions");
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String st) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(st);
         }
     }
 
@@ -103,6 +106,6 @@ public class TransactionFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(String st);
     }
 }
