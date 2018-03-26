@@ -4,9 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -28,6 +36,17 @@ public class TransactionFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+
+    static Context context;
+    RecyclerView rc;
+    private ArrayList<ListModel> customListViewValues = new ArrayList<ListModel>();
+    private RecyclerView.LayoutManager mLayoutManager;
+    private CustomAdapter mAdapter;
+    ListModel dl;
+    private FragmentActivity myContext;
+
+
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -63,8 +82,14 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction, container, false);
+
+        if(mListener!=null){
+            mListener.onFragmentInteraction("Transaction");
+        }
+        View view = inflater.inflate(R.layout.fragment_my_adds, container, false);
+        rc = (RecyclerView) view.findViewById(R.id.recycler_view_my_adds);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
