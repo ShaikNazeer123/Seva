@@ -261,6 +261,8 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                 mDatabase.child(holder.categoryType).child(holder.postId).child("iscompleted").setValue("true");
             }
         });
+
+
     }
 
     @Override
