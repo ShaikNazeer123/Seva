@@ -135,6 +135,7 @@ public class FoodFragment extends Fragment {
 
                         if(singlePost == null) continue;
                         Boolean isLiked = false;
+                        Boolean isCompleted = false;
                         String postKey = entry.getKey();
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
@@ -183,6 +184,15 @@ public class FoodFragment extends Fragment {
                                 }
                                 if(fieldKey.equals("imageUri")) {
                                     imageUri = fieldValue;
+                                }
+
+                                if(fieldKey.equals("iscompleted")) {
+                                    if(fieldValue.equals("true")){
+                                        temp.setIsCompleted();
+                                    }
+                                    else{
+                                        temp.resetisCompleted();
+                                    }
                                 }
                             }
                         }

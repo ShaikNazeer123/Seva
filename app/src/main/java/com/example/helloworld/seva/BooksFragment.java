@@ -123,6 +123,7 @@ public class BooksFragment extends Fragment {
                         Map<String, Object> singlePost = (Map<String, Object>) entry.getValue();
                         if(singlePost == null) continue;
                         Boolean isLiked = false;
+                        Boolean isCompleted = false;
                         String postKey = entry.getKey();
                         for(Map.Entry<String, Object> entry11 : singlePost.entrySet()){
 
@@ -171,6 +172,15 @@ public class BooksFragment extends Fragment {
                                 }
                                 if(fieldKey.equals("imageUri")) {
                                     imageUri = fieldValue;
+                                }
+
+                                if(fieldKey.equals("iscompleted")) {
+                                    if(fieldValue.equals("true")){
+                                        temp.setIsCompleted();
+                                    }
+                                    else{
+                                        temp.resetisCompleted();
+                                    }
                                 }
                             }
                         }
