@@ -62,14 +62,14 @@
                     android:orientation="horizontal">
                     <TextView
                         android:id="@+id/completed"
-                        android:background="@color/white"
+
                         android:padding="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Completed"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:textColor="#0F1FF0"
+                        android:textColor="#32CD32"
                         android:visibility="visible"/>
                     <ImageView
                         android:src="@drawable/ic_complete"
