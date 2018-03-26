@@ -17,6 +17,11 @@
             android:icon="@mipmap/love"
             android:title="Interests" />
         <item
+            android:id="@+id/transactions"
+            android:icon="@drawable/ic_complete"
+            android:title="Transaction"
+            />
+        <item
             android:id="@+id/about"
             android:icon="@drawable/ic_about"
             android:title="About" />

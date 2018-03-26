@@ -76,6 +76,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
         public ImageView t_like_image;
         public ImageView t_edit;
         public ImageView t_delete;
+        public  ImageView t_complete;
 
         public String uId;
         public String postId;
@@ -98,6 +99,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             this.t_like_image = v.findViewById(R.id.like);
             this.t_edit = v.findViewById(R.id.edit);
             this.t_delete = v.findViewById(R.id.delete);
+            this.t_complete = v.findViewById(R.id.complete);
         }
     }
 
@@ -248,6 +250,13 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
                     }
                 });
                 //Toast.makeText(context, "Delete button pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.t_complete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //complete
             }
         });
     }

@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
     IntersetsFragment intersetsFragment;
     AboutFragment aboutFragment;
     LikeSupportFragment likeSupportFragment;
+    TransactionFragment transactionFragment;
     PostAddFragment postAddFragment;
     static String uId;
 
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity
         intersetsFragment = IntersetsFragment.newInstance(null,null);
         aboutFragment = AboutFragment.newInstance(null,null);
         likeSupportFragment = LikeSupportFragment.newInstance(null,null);
+        transactionFragment = TransactionFragment.newInstance(null,null);
 
         /*
         Intent intentExtras = getIntent();
@@ -279,6 +281,8 @@ public class MainActivity extends AppCompatActivity
             fragment = myAddsFragment;
         } else if (id == R.id.interests) {
             fragment = intersetsFragment;
+        } else if(id==R.id.transactions){
+            fragment = transactionFragment;
         } else if (id == R.id.about) {
             fragment = aboutFragment;
         }else if(id == R.id.like_support){
