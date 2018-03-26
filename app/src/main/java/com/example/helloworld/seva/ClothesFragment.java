@@ -215,7 +215,7 @@ public class ClothesFragment extends Fragment {
                             temp.resetisLiked();
                         }
 //                        Log.e("data: ",temp.getItemName()+" "+temp.getItemDescription()+" "+temp.getItemPhoneNumber()+" "+temp.getItemLocation()+" ");
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                      /*  SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
                         //  SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa");
                         try {
                             Date date = dateFormat.parse(expirydate);
@@ -224,7 +224,8 @@ public class ClothesFragment extends Fragment {
                                 customListViewValues.add(temp);
                             }
                         } catch (ParseException e) {
-                        }
+                        }*/
+                        customListViewValues.add(temp);
                     }
 
                     //ArrayList<Blog> values = (ArrayList<Blog>) dataSnapshot.getValue();

@@ -47,7 +47,7 @@
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:textColor="#32CD32"
-                        android:visibility="visible"/>
+                        android:visibility="gone"/>
                 </LinearLayout>
             </FrameLayout>
             <LinearLayout

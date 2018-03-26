@@ -217,7 +217,7 @@ public class FoodFragment extends Fragment {
                         else{
                             temp.resetisLiked();
                         }
-//                        Log.e("data: ",temp.getItemName()+" "+temp.getItemDescription()+" "+temp.getItemPhoneNumber()+" "+temp.getItemLocation()+" ");
+/*//                        Log.e("data: ",temp.getItemName()+" "+temp.getItemDescription()+" "+temp.getItemPhoneNumber()+" "+temp.getItemLocation()+" ");
                         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
                       //  SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa");
                         try {
@@ -227,8 +227,8 @@ public class FoodFragment extends Fragment {
                                 customListViewValues.add(temp);
                             }
                         } catch (ParseException e) {
-                        }
-
+                        }*/
+                        customListViewValues.add(temp);
 
 
                     }
