@@ -75,6 +75,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public String categoryType;
 
         public Boolean isLiked;
+        public Boolean isCompleted;
 
         public ViewHolder(View v){
             super(v);
@@ -117,6 +118,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.postId = tempValues.getPostId();
             holder.categoryType = tempValues.getCategoryType();
             holder.uId = tempValues.getuId();
+            holder.isCompleted = tempValues.geCompleteStatus();
 
             //Log.e("data in ca: ",tempValues.getItemName()+" "+tempValues.getItemDescription()+" "+tempValues.getItemPhoneNumber()+" "+tempValues.getItemLocation()+" "+tempValues.getImageUri());
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {

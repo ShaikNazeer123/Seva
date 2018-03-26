@@ -128,6 +128,7 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             holder.postId = tempValues.getPostId();
             holder.categoryType = tempValues.getCategoryType();
             holder.uId = tempValues.getuId();
+            holder.isCompleted = tempValues.geCompleteStatus();
 
 
             Picasso.with(context).load(tempValues.getImage()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.t_post_image, new Callback() {
