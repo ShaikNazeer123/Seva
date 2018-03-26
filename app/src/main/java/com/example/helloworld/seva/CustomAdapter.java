@@ -69,6 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView t_post_image;
         public TextView t_item_post_date;
         public ImageView t_like_image;
+        public TextView t_text_complete;
 
         public String uId;
         public String postId;
@@ -90,6 +91,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             this.t_post_image = v.findViewById(R.id.postImage);
             this.t_item_post_date = v.findViewById(R.id.item_post_date);
             this.t_like_image = v.findViewById(R.id.like);
+            this.t_text_complete = v.findViewById(R.id.completed_normal);
         }
     }
 
@@ -178,6 +180,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             }
         });
+
+        if(holder.isCompleted){
+            holder.t_text_complete.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

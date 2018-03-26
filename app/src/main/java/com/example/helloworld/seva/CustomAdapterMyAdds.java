@@ -262,6 +262,8 @@ public class CustomAdapterMyAdds extends RecyclerView.Adapter<CustomAdapterMyAdd
             public void onClick(View view) {
                 mDatabase.child("Transactions").child(holder.categoryType).child(holder.postId).setValue("true");
                 mDatabase.child(holder.categoryType).child(holder.postId).child("iscompleted").setValue("true");
+                holder.t_text_complete.setVisibility(View.VISIBLE);
+                holder.t_complete.setVisibility(View.GONE);
             }
         });
         Log.e("lol",holder.isCompleted+"");
