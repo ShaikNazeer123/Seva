@@ -129,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="none"
                             android:hint="Expiry date"
-                            android:text="faldskfjdsal"
+<!--                            android:text="faldskfjdsal"-->
                             android:editable="false"
                             android:textColorHint="@color/black"
                             android:textColor="@color/black"
